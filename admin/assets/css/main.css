@@ -1,0 +1,130 @@
+/*shift card body button to the bottom of the card*/
+.card-body {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-body div.row {
+	margin-top: auto;
+}
+
+.btn-round{
+	border-radius: 30px;
+}
+
+select{
+	text-align-last: center;
+}
+
+.carddeleteicon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	opacity: 0;
+	-webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.showpwd {
+      position: absolute;
+      top:57%;
+      left: 90%;
+}
+
+.center-element{
+	text-align: center;
+}
+
+.center-element > div{
+	margin: auto;
+}
+
+.logo-preview{
+	width: 200px;
+	height: 200px;
+}
+
+.logo a {
+	white-space: normal !important;	
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+ul.dropdown-menu li:hover {
+	background-color: #EEEEEE;
+}
+ul.dropdown-menu li a 
+{
+	text-decoration: none;
+}
+
+select {
+	padding: 7px;
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+}
+.close_icon {
+	padding:0px;
+}
+i {
+	cursor: pointer;
+}
+.nav p {
+	color:white;
+}
+li.active p {
+	color: #f96332;
+}
+.sidebar .nav li>a{
+	font-size: 0.7142em;
+}
+/*overriding now-ui dashboard's card with bootstrap's card*/
+.card {
+	display: flex !important;
+	width:auto !important;
+	box-shadow: none !important;
+	border:1px solid rgba(0,0,0,.125) !important;
+}
+
+
+/* delete icon must be displayed when hovered on the card*/
+.item.card:hover > .carddeleteicon {
+	opacity: 1;
+	-webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.slick-slide:hover > .carddeleteicon{
+	opacity: 1;
+	-webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+
+/* CONTACT EMAILS */
+	.dataTables_wrapper.form-inline{
+		display: block;
+	}
+	.dataTables_paginate{
+		float: right;
+	}
+	.dataTables_length select {
+		margin-left: 5px !important;
+		margin-right: 5px !important;
+	}
