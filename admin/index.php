@@ -96,7 +96,7 @@
           {
             $("#result").html("Login Successful");
             setTimeout(function(){
-              window.location="files/settings.php";
+              window.location="files/dashboard.php";
             },1200);
           }
           else
