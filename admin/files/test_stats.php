@@ -20,6 +20,8 @@
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
   <link type="text/css" rel="stylesheet" href="http://jqueryte.com/css/jquery-te.css" charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" charset="utf-8">
+
   <link href="../assets/css/main.css" rel="stylesheet" />
 </head>
 
@@ -71,7 +73,32 @@
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                   <input type="hidden" name="general_settings"/>
-
+                  <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>SERIAL NO</th>
+                            <th>ROLL NO</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>313001</td>
+                            <td>61</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>313002</td>
+                            <td>81</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>313003</td>
+                            <td>91</td>
+                        </tr>
+                    </tbody>
+                  </table>
                 </form>
               </div>
             </div>
@@ -93,10 +120,16 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 </body>
 <script>
   function redirect_to_question_test() {
     window.location = "test_question_stats.php";
   }
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+
 </script>
 </html>

@@ -77,7 +77,7 @@
                   </div> -->
 
                   <div class="card" style="background:#ededed;">
-                  <a href="test_stats.php" style="text-decoration:none;">
+                  <a href="test_stats.php" style="color:#2c2c2c;text-decoration:none;">
                     <div class="card-body">
                       <h6>Computer Organization and Architecture (MCQ)</h6>
                       <div class="row">
