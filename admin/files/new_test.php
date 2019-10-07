@@ -55,68 +55,65 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
+
       <div class="content" style="min-height: auto;">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card" style="min-height:400px;">
+          <div class="col-md-2"></div>  
+          <div class="col-md-8">
+            <div class="card">
               <div class="card-header">
-                <div class="row">
-                  <div class="col-md-8">
-                    <h5 class="title">Pending Quiz Tests</h5>
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_new_test()" style="margin-top:0px;width:100px !important;float:right !important;">NEW</button>
-                  </div>
-                </div>  
+                <h5 class="title">Create New Test</h5>
               </div>
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                  <input type="hidden" name="general_settings"/>
-                  <!-- <div id="no-data">
-                    <center>
-                      <img src="../assets/img/no-data.svg" height="400" width="400"/>
-                      <center><h5>No Data</h5></center>
-                    </center>
-                  </div> -->
-
-                  <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
+                  <input type="hidden" name="general_settings">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Test name (title)</label>
+                          <input type="text" class="form-control" name="site_name" placeholder="Test name" required/>
+                      </div>
+                      <div class="form-group">
+                        <label>Subject name</label>
+                          <input type="text" class="form-control" name="site_name" placeholder="Subject name" required/>
+                      </div>
+                      <div class="form-group">
+                        <label>Test date</label>
+                          <input type="date" class="form-control" name="site_name" placeholder="Test Date" required/>
+                      </div>
+                      <div class="form-group">
+                        <label>Total Questions count</label>
+                          <input type="number" class="form-control" name="site_name" placeholder="Total Questions count" required/>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="options" name="options" class="btn-round" required style="width:100%;">
+                                <option selected="true" value="" disabled="disabled">Select test status</option>
+                                <option value="facebook">PENDING</option>
+                                <option value="instagram">RUNNING</option>                                
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select id="options" name="options" class="btn-round" required style="width:100%;">
+                                <option selected="true" value="" disabled="disabled">Select class for test</option>
+                                <option value="facebook">TE 1</option>
+                                <option value="instagram">TE 2</option>
+                                <option value="tumblr">TE 3</option>
+                                <option value="twitter">TE 4</option>
+                                <option value="linkedin">TE 5</option>
+                                <option value="google-plus">TE 6</option>
+                                <option value="youtube">TE 7</option>           
+                                </select>
+                            </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
-                        </div>
+                  <div class="row center-element">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_dashboard()">CREATE TEST</button>
                       </div>
                     </div>
                   </div>
@@ -124,6 +121,7 @@
               </div>
             </div>
           </div>
+          <div class="col-md-2"></div>
         </div>
       </div>
       <!-- footer -->
@@ -146,8 +144,8 @@
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
 </body>
 <script>
-  function redirect_to_new_test() {
-    window.location = "new_test.php";
+  function redirect_to_dashboard() {
+    window.location = "dashboard.php";
   }
 </script>
 </html>

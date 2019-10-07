@@ -10,7 +10,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="<?=($activePage=='dashboard')? 'active': ''; ?>">
+        <li class="<?=($activePage=='dashboard' || $activePage=='new_test')? 'active': ''; ?>">
           <a href="./dashboard.php">
             <i class="now-ui-icons shopping_shop"></i>
             <p>Dashboard</p>
