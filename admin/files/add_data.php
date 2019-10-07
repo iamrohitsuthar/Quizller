@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +41,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Dashboard Basic Settings</a>
+            <a class="navbar-brand" href="#pablo">Add Class / Student</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -55,14 +54,12 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-
       <div class="content" style="min-height: auto;">
         <div class="row">
-          <div class="col-md-2"></div>  
-          <div class="col-md-8">
+          <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Create New Test</h5>
+                <h5 class="title">Add New Class Data</h5>
               </div>
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -70,50 +67,23 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Test name (title)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Test name" required/>
+                        <label>Class name</label>
+                        <input type="text" class="form-control" name="site_name" placeholder="Class name"/>
                       </div>
                       <div class="form-group">
-                        <label>Subject name</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Subject name" required/>
+                        <label>Starting Roll number</label>
+                        <input type="text" class="form-control" name="site_name" placeholder="Starting roll number"/>
                       </div>
                       <div class="form-group">
-                        <label>Test date</label>
-                          <input type="date" class="form-control" name="site_name" placeholder="Test Date" required/>
-                      </div>
-                      <div class="form-group">
-                        <label>Total Questions count</label>
-                          <input type="number" class="form-control" name="site_name" placeholder="Total Questions count" required/>
-                      </div>
-                      <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <select id="options" name="options" class="btn-round" required style="width:100%;">
-                                  <option selected="true" value="" disabled="disabled">Select test status</option>
-                                  <option value="facebook">PENDING</option>
-                                  <option value="instagram">RUNNING</option>                                
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <select id="options" name="options" class="btn-round" required style="width:100%;">
-                                  <option selected="true" value="" disabled="disabled">Select class for test</option>
-                                  <option value="facebook">TE 1</option>
-                                  <option value="instagram">TE 2</option>
-                                  <option value="tumblr">TE 3</option>
-                                  <option value="twitter">TE 4</option>
-                                  <option value="linkedin">TE 5</option>
-                                  <option value="google-plus">TE 6</option>
-                                  <option value="youtube">TE 7</option>           
-                                </select>
-                            </div>
-                        </div>
+                        <label>Ending Roll number</label>
+                        <input type="text" class="form-control" name="site_name" placeholder="Ending roll number"/>
                       </div>
                     </div>
                   </div>
                   <div class="row center-element">
                     <div class="col-md-8">
-                      <div class="form-group">
-                        <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_dashboard()">CREATE TEST</button>
+                      <div class="form-group"><br/>
+                        <button class="btn btn-primary btn-block btn-round">CREATE</button>
                       </div>
                     </div>
                   </div>
@@ -121,7 +91,44 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2"></div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Add Student</h5>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                  <input type="hidden" name="general_settings">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <select id="options" name="options" class="btn-round" required style="width:100%;">
+                            <option selected="true" value="" disabled="disabled">Select class for test</option>
+                            <option value="facebook">TE 1</option>
+                            <option value="instagram">TE 2</option>
+                            <option value="tumblr">TE 3</option>
+                            <option value="twitter">TE 4</option>
+                            <option value="linkedin">TE 5</option>
+                            <option value="google-plus">TE 6</option>
+                            <option value="youtube">TE 7</option>           
+                        </select>
+
+                        <div class="form-group" style="margin-top:10px;">
+                            <label>Student Roll number / user id</label>
+                            <input type="text" class="form-control" name="site_name" placeholder="Student Roll number"/>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row center-element">
+                    <div class="col-md-8">
+                      <div class="form-group"><br/>
+                        <button class="btn btn-primary btn-block">ADD</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- footer -->
@@ -140,9 +147,4 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
 </body>
-<script>
-  function redirect_to_dashboard() {
-    window.location = "dashboard.php";
-  }
-</script>
 </html>

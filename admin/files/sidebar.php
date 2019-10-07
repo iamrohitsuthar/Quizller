@@ -16,8 +16,8 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="<?=($activePage=='addData')? 'active': ''; ?>">
-          <a href="./addData.php">
+        <li class="<?=($activePage=='add_data')? 'active': ''; ?>">
+          <a href="./add_data.php">
             <i class="now-ui-icons business_badge"></i>
             <p>Add Class / Student</p>
           </a>
