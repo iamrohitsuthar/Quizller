@@ -22,7 +22,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             <p>Add Class / Student</p>
           </a>
         </li>
-        <li class="<?=($activePage=='statistics')? 'active': ''; ?>">
+        <li class="<?=($activePage=='statistics' || $activePage=='test_stats' || $activePage=='test_question_stats')? 'active': ''; ?>">
           <a href="./statistics.php">
             <i class="now-ui-icons business_chart-bar-32"></i>
             <p>Statistics</p>
