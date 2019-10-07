@@ -4,7 +4,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 <div class="sidebar" data-color="orange">
     <div class="logo" style="padding:unset;">
-      <a href="settings.php" class="simple-text logo-mini" style="width:100px;padding-left:10px;">
+      <a href="dashboard.php" class="simple-text logo-mini" style="width:100px;padding-left:10px;">
           <img src="../assets/img/logo.png"/>
         </a>
     </div>
@@ -26,6 +26,12 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
           <a href="./statistics.php">
             <i class="now-ui-icons business_chart-bar-32"></i>
             <p>Statistics</p>
+          </a>
+        </li>
+        <li class="<?=($activePage=='view_data')? 'active': ''; ?>">
+          <a href="./view_data.php">
+            <i class="now-ui-icons design_bullet-list-67"></i>
+            <p>View Data</p>
           </a>
         </li>
         <li class="<?=($activePage=='logout')? 'active': ''; ?>">
