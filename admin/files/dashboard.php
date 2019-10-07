@@ -1,196 +1,4 @@
-<?php
-session_start();
-if(!isset($_SESSION["user"]))
-{
-  header("Location:../index.php");
-}
-include "../../db/config.php";
 
-// //Defining update checking variables
-//   $flag_settings=$flag_about=$flag_logo=$flag_social_settings=$flag_social_settings_add="default";
-
-// // UPDATING INFO
-//     if($_SERVER['REQUEST_METHOD']=='POST')
-//     {
-//       echo "<script>console.log('ok');</script>";
-//       //Updating General settings
-//         if(isset($_POST['general_settings']))
-//         {
-
-//           $siteName = $_POST['site_name'];
-//           $siteEmail = $_POST['site_email'];
-//           $siteContactNumber = $_POST['site_contact_number'];
-//           $siteLocation = $_POST['site_location'];
-
-//           $sql = "UPDATE setting SET value = '$siteName' WHERE name = 'site_name'";
-//           $res = mysqli_query($conn,$sql);
-//             if(!$res) {echo "<script>console.log('".mysqli_error($conn)."');</script>";$flag_settings="false";}
-
-//           $sql = "UPDATE setting SET value = '$siteEmail' WHERE name = 'email'";
-//           $res = mysqli_query($conn,$sql);
-//             if(!$res) {echo "<script>console.log('".mysqli_error($conn)."');</script>";$flag_settings="false";}
-
-//           $sql = "UPDATE setting SET value = '$siteLocation' WHERE name = 'location'";
-//           $res = mysqli_query($conn,$sql);
-//             if(!$res) {echo "<script>console.log('".mysqli_error($conn)."');</script>";$flag_settings="false";}
-
-//           $sql = "UPDATE setting SET value = '$siteContactNumber' WHERE name = 'mobile_no'";
-//           $res = mysqli_query($conn,$sql);
-//             if(!$res) {echo "<script>console.log(\"".mysqli_error($conn)."\");</script>";$flag_settings="false";}
-
-//           if($flag_settings!="false")
-//           {
-//             $flag_settings = "true";
-//           }
-//         }
-
-//       //Updating Site Logo
-//         if(isset($_POST['site_logo']))
-//         {
-//           $target_dir = "../../images/";
-//           $target_file = $target_dir . "logo" . str_replace("image/",".",$_FILES['logo_img']['type']);
-//           $uploadOk = 1;
-//           $file_type = str_replace("image/","",$_FILES['logo_img']['type']);
-//           $target_file_name = "logo." . $file_type;
-
-//           //checking if file is an image
-//           $check = getimagesize($_FILES["logo_img"]["tmp_name"]);
-//           if($check !== false) 
-//                { $uploadOk = 1;} 
-//           else 
-//                { $uploadOk = 0;}
-
-//           if($uploadOk == 0)
-//           {
-//             $flag_logo = "logonotimage";
-//           }
-//           else
-//           {
-//             if (move_uploaded_file($_FILES["logo_img"]["tmp_name"], $target_file)) {
-//                 //echo "The file ". basename( $_FILES["logo_img"]["name"]). " has been uploaded.";
-//                 $flag_logo = "true";
-//                 $sql = "UPDATE setting SET value = '$target_file_name' WHERE name = 'logo_url'";
-//                 $res = mysqli_query($conn,$sql);
-//                   if(!$res) {echo "<script>console.log(\"".mysqli_error($conn)."\");</script>";$flag_logo="false";}
-//             } else {
-//                 //echo "Sorry, there was an error uploading your file.";
-//                 $flag_logo = "false";
-//             }
-//           }
-
-
-//           // echo "<script>console.log(\"". strtolower(pathinfo($target_file,PATHINFO_EXTENSION)) ."\");</script>";
-//         }
-
-//       //Updating About Us
-//         if(isset($_POST['about_us']))
-//         {
-//           echo "<script>console.log('changing about us');</script>";
-//           $title = $_POST['about_title'];
-//           $description = $_POST['about_description'];
-//           $target_dir = "../../images/";
-//           $target_file = $target_dir . "aboutus" . str_replace("image/",".",$_FILES['about_img']['type']);
-//           $uploadOk = 1;
-//           $file_type = str_replace("image/","",$_FILES['about_img']['type']);
-
-//           //checking if file is an image
-//           $check = getimagesize($_FILES["about_img"]["tmp_name"]);
-//           if($check !== false) 
-//                { $uploadOk = 1;} 
-//           else 
-//                { $uploadOk = 0;}
-
-//           if($uploadOk == 0)
-//           {
-//             $flag_about = "aboutnotimage";
-//           }
-//           else
-//           {
-//             echo "<script>console.log('File is an image. Trying to upload it.');</script>";
-//             if (move_uploaded_file($_FILES["about_img"]["tmp_name"], $target_file)) {
-//                 //echo "The file ". basename( $_FILES["about_img"]["name"]). " has been uploaded.";
-//                 echo "<script>console.log('Upload Successful.');</script>";
-//                 $flag_about = "true";
-//             } else {
-//                 //echo "Sorry, there was an error uploading your file.";
-//                 echo "<script>console.log('Upload Failed.');</script>";
-//                 $flag_about = "false";
-//             }
-//           }
-
-//           if($flag_about=="true")
-//           {
-//             echo "<script>console.log('Inserting in DB.');</script>";
-//             $sql = "UPDATE about_us SET title = '$title', description = '$description', image_url = 'images/aboutus.$file_type'";
-//             $res = mysqli_query($conn,$sql);
-//               if(!$res) {echo "<script>console.log(\"".mysqli_error($conn)."\");</script>";$flag_about="false";echo "<script>console.log('Insert failed.');</script>";}
-//               else {$flag_about="true";echo "<script>console.log('Inserted.');</script>";}
-//           }
-
-//           // if($flag_about!="false")
-//           // {
-//           //   $flag_about = "true";
-//           // }
-
-//         }
-
-//       //Updating Social Settings
-//         if(isset($_POST['social_settings']))
-//         {
-          
-//           $social_url=$_POST["social_url"];
-//           $sql="DELETE from social where url='$social_url'";
-//           $res=mysqli_query($conn,$sql);
-//           if(!$res)
-//           {$flag_social_settings="false";}
-//           if($flag_social_settings!="false")
-//           {
-//             $flag_social_settings = "true";
-//           }
-        	
-//         }
-//         //adding social categories
-//         if(isset($_POST['social_settings_add']))
-//         {
-//             echo "<script>console.log(\"".'hi'."\");</script>";
-//             $category=$_POST["options"];
-//             $url=$_POST["url"];
-//             echo "<script>console.log(\"".$category."\");</script>";
-//             echo "<script>console.log(\"".$url."\");</script>";
-            
-//             $sql="INSERT INTO social(name, url) VALUES('$category','$url')";
-//             $res=mysqli_query($conn,$sql);
-//             if(!$res){$flag_social_settings_add="false";}
-
-//             if($flag_social_settings_add!="false")
-//             {
-//               $flag_social_settings_add="true";
-//             }
-//             echo "<script>console.log(\"".$flag_social_settings_add."\");</script>";
-            
-//         }
-//     }
-
-// // Getting site settings info
-//   $sql="SELECT * from setting";
-//   $result=mysqli_query($conn,$sql);
-//   while($main_settings=mysqli_fetch_assoc($result))
-//   {
-//     if($main_settings["name"]=="site_name") $site_name=$main_settings["value"];
-//     if($main_settings["name"]=="email") $email=$main_settings["value"];
-//     if($main_settings["name"]=="location") $location=$main_settings["value"];
-//     if($main_settings["name"]=="mobile_no") $mobileno=$main_settings["value"];
-//     // Getting site logo info
-//       if($main_settings["name"]=="logo_url") $logo_url=$main_settings["value"];
-//   }
-
-
-// // Getting about us info
-//     $sql="SELECT title,description,image_url from about_us";
-//     $result=mysqli_query($conn,$sql);
-//     $about=mysqli_fetch_assoc($result);
-
-// ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -250,7 +58,7 @@ include "../../db/config.php";
       <div class="content" style="min-height: auto;">
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="min-height:400px;">
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-8">
@@ -264,13 +72,54 @@ include "../../db/config.php";
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                   <input type="hidden" name="general_settings"/>
-                  <div id="no-data">
+                  <!-- <div id="no-data">
                     <center>
                       <img src="../assets/img/no-data.svg" height="400" width="400"/>
                       <center><h5>No Data</h5></center>
                     </center>
+                  </div> -->
+
+                  <div class="card" style="background:#ededed;">
+                    <div class="card-body">
+                      <h6>Computer Organization and Architecture (MCQ)</h6>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <p>Subject - COA</p>
+                        </div>
+                        <div class="col-md-4"> 
+                          <p style="text-align:right;">Date - 13/06/2020</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
+                  <div class="card" style="background:#ededed;">
+                    <div class="card-body">
+                      <h6>Computer Organization and Architecture (MCQ)</h6>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <p>Subject - COA</p>
+                        </div>
+                        <div class="col-md-4"> 
+                          <p style="text-align:right;">Date - 13/06/2020</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card" style="background:#ededed;">
+                    <div class="card-body">
+                      <h6>Computer Organization and Architecture (MCQ)</h6>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <p>Subject - COA</p>
+                        </div>
+                        <div class="col-md-4"> 
+                          <p style="text-align:right;">Date - 13/06/2020</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
