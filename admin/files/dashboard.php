@@ -80,17 +80,19 @@
                   </div> -->
 
                   <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
+                    <a href="test_details.php" style="color:#2c2c2c;text-decoration:none;">
+                      <div class="card-body">
+                        <h6>Computer Organization and Architecture (MCQ)</h6>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <p>Subject - COA</p>
+                          </div>
+                          <div class="col-md-4"> 
+                            <p style="text-align:right;">Date - 13/06/2020</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </a>
                   </div>
 
                   <div class="card" style="background:#ededed;">
