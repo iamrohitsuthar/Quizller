@@ -72,56 +72,46 @@
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                   <input type="hidden" name="general_settings"/>
-                  <!-- <div id="no-data">
-                    <center>
-                      <img src="../assets/img/no-data.svg" height="400" width="400"/>
-                      <center><h5>No Data</h5></center>
-                    </center>
-                  </div> -->
 
-                  <div class="card" style="background:#ededed;">
-                    <a href="test_details.php" style="color:#2c2c2c;text-decoration:none;">
-                      <div class="card-body">
-                        <h6>Computer Organization and Architecture (MCQ)</h6>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p>Subject - COA</p>
+                  <?php
+
+                    include '../../database/config.php';
+                    $sql = "select * from tests where teacher_id = 1";
+                    $result = mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result) > 0) {
+                      while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                          <div class="card" style="background:#ededed;">
+                            <a href="test_details.php" style="color:#2c2c2c;text-decoration:none;">
+                              <div class="card-body">
+                                <h6><?= $row["name"];?></h6>
+                                <div class="row">
+                                  <div class="col-md-8">
+                                    <p>Subject - <?= $row["subject"];?></p>
+                                  </div>
+                                  <div class="col-md-4"> 
+                                    <p style="text-align:right;">Date - <?= $row["date"];?></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
                           </div>
-                          <div class="col-md-4"> 
-                            <p style="text-align:right;">Date - 13/06/2020</p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
 
-                  <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
-                        </div>
+                        <?php
+                      }
+                    }
+                    else {
+                      ?>
+                      <div id="no-data">
+                        <center>
+                          <img src="../assets/img/no-data.svg" height="400" width="400"/>
+                          <center><h5>No Data</h5></center>
+                        </center>
                       </div>
-                    </div>
-                  </div>
+                      <?php
+                    }
+                  ?>
 
-                  <div class="card" style="background:#ededed;">
-                    <div class="card-body">
-                      <h6>Computer Organization and Architecture (MCQ)</h6>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <p>Subject - COA</p>
-                        </div>
-                        <div class="col-md-4"> 
-                          <p style="text-align:right;">Date - 13/06/2020</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>
