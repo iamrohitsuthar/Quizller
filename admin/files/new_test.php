@@ -1,4 +1,44 @@
+<?php
+session_start();
+if(!isset($_SESSION["user_id"]))
+  header("Location:../index.php");
 
+include '../../database/config.php';
+if(isset($_POST['new_test'])) {
+  echo "<script>console.log('aya');</script>";
+  $test_name = $_POST['test_name'];
+  $test_subject = $_POST['subject_name'];
+  $test_date = $_POST['test_date'];
+  $total_questions = $_POST['total_questions'];
+  $test_status = $_POST['test_status'];
+  $test_class = $_POST['test_class'];
+  $status_id = $class_id = -1;
+
+  //getting status id
+  $status_sql = "SELECT id from status where name LIKE '%$test_status%'";
+  $status = mysqli_query($conn,$status_sql);
+  if(mysqli_num_rows($status) > 0) {
+    $status_row = mysqli_fetch_assoc($status);
+    $status_id = $status_row["id"];
+  }
+  //getting class id
+  $class_sql = "SELECT id from classes where name LIKE '%$test_class%'";
+  $class_result = mysqli_query($conn,$class_sql);
+  if(mysqli_num_rows($class_result) > 0) {
+    $class_row = mysqli_fetch_assoc($class_result);
+    $class_id = $class_row["id"];
+  }
+
+  $teacher_id = $_SESSION["user_id"];
+  //creating new test
+  $sql = "INSERT INTO tests(teacher_id, name, date, status_id, subject, total_questions,class_id) VALUES('$teacher_id','$test_name','$test_date','$status_id','$test_subject','$total_questions','$class_id')";
+  $result = mysqli_query($conn,$sql);
+  if($result) {
+    echo "<script>console.log('Done');</script>";
+    header("Location:dashboard.php");
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,44 +106,44 @@
               </div>
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                  <input type="hidden" name="general_settings">
+                  <input type="hidden" name="new_test">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Test name (title)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Test name" required/>
+                          <input type="text" class="form-control" name="test_name" placeholder="Test name" required/>
                       </div>
                       <div class="form-group">
                         <label>Subject name</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Subject name" required/>
+                          <input type="text" class="form-control" name="subject_name" placeholder="Subject name" required/>
                       </div>
                       <div class="form-group">
                         <label>Test date</label>
-                          <input type="date" class="form-control" name="site_name" placeholder="Test Date" required/>
+                          <input type="date" class="form-control" name="test_date" placeholder="Test Date" required/>
                       </div>
                       <div class="form-group">
                         <label>Total Questions count</label>
-                          <input type="number" class="form-control" name="site_name" placeholder="Total Questions count" required/>
+                          <input type="number" class="form-control" name="total_questions" placeholder="Total Questions count" required/>
                       </div>
                       <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <select id="options" name="options" class="btn-round" required style="width:100%;">
+                                <select id="options" name="test_status" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select test status</option>
-                                  <option value="facebook">PENDING</option>
-                                  <option value="instagram">RUNNING</option>                                
+                                  <option value="pending">PENDING</option>
+                                  <option value="running">RUNNING</option>                                
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <select id="options" name="options" class="btn-round" required style="width:100%;">
+                                <select id="options" name="test_class" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select class for test</option>
-                                  <option value="facebook">TE 1</option>
-                                  <option value="instagram">TE 2</option>
-                                  <option value="tumblr">TE 3</option>
-                                  <option value="twitter">TE 4</option>
-                                  <option value="linkedin">TE 5</option>
-                                  <option value="google-plus">TE 6</option>
-                                  <option value="youtube">TE 7</option>           
+                                  <option value="TE1">TE 1</option>
+                                  <option value="TE2">TE 2</option>
+                                  <option value="TE3">TE 3</option>
+                                  <option value="TE4">TE 4</option>
+                                  <option value="TE5">TE 5</option>
+                                  <option value="TE6">TE 6</option>
+                                  <option value="TE7">TE 7</option>           
                                 </select>
                             </div>
                         </div>
@@ -113,7 +153,7 @@
                   <div class="row center-element">
                     <div class="col-md-8">
                       <div class="form-group">
-                        <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_dashboard()">CREATE TEST</button>
+                        <button class="btn btn-primary btn-block btn-round">CREATE TEST</button>
                       </div>
                     </div>
                   </div>
@@ -140,9 +180,4 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
 </body>
-<script>
-  function redirect_to_dashboard() {
-    window.location = "dashboard.php";
-  }
-</script>
 </html>
