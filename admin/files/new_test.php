@@ -128,20 +128,35 @@ if(isset($_POST['new_test'])) {
                             <div class="col-md-6">
                                 <select id="options" name="test_status" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select test status</option>
-                                  <option value="pending">PENDING</option>
-                                  <option value="running">RUNNING</option>                                
+                                  <?php
+
+                                      $sql = "select * from status where id IN(1,2)";
+                                      $result = mysqli_query($conn,$sql);
+                                      while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+
+                                        <option value="<?= $row["name"];?>"><?= $row["name"];?></option>
+
+                                        <?php
+                                      }
+                                      ?>                                 
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <select id="options" name="test_class" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select class for test</option>
-                                  <option value="TE1">TE 1</option>
-                                  <option value="TE2">TE 2</option>
-                                  <option value="TE3">TE 3</option>
-                                  <option value="TE4">TE 4</option>
-                                  <option value="TE5">TE 5</option>
-                                  <option value="TE6">TE 6</option>
-                                  <option value="TE7">TE 7</option>           
+                                  <?php
+
+                                      $sql = "select * from classes";
+                                      $result = mysqli_query($conn,$sql);
+                                      while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+
+                                        <option value="<?= $row["name"];?>"><?= $row["name"];?></option>
+
+                                        <?php
+                                      }
+                                    ?>          
                                 </select>
                             </div>
                         </div>
