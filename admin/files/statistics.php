@@ -138,8 +138,6 @@ if(!isset($_SESSION["user_id"]))
   }
 
   function submit(val1,val2) {
-    console.log(val1);
-    console.log(val2);
     document.getElementById("test_id").value = val1;
     document.getElementById("test_name").value = val2;
     document.getElementById("test_details").submit();

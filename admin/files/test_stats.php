@@ -75,7 +75,7 @@
                     <h5 class="title"><?= $name; ?></h5>
                   </div>
                   <div class="col-md-4">
-                    <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_question_test()" style="margin-top:0px;width:200px !important;float:right !important;">Questions Stats</button>
+                    <button class="btn btn-primary btn-block btn-round" onclick="submit(<?= $test_id;?>,'<?php echo $name;?>')" style="margin-top:0px;width:200px !important;float:right !important;">Questions Stats</button>
                   </div>
                 </div>  
               </div>
@@ -120,6 +120,10 @@
           </div>
         </div>
       </div>
+      <form method="POST" action="test_question_stats.php" id="test_details">
+        <input type="hidden" id="test_id" name="test_id">
+        <input type="hidden" id="test_name" name="test_name">
+      </form>
       <!-- footer -->
       <?php
         include "footer.php";
@@ -145,6 +149,14 @@
   $(document).ready(function() {
     $('#example').DataTable();
   });
+
+
+  function submit(val1,val2) {
+    document.getElementById("test_id").value = val1;
+    document.getElementById("test_name").value = val2;
+    document.getElementById("test_details").submit();
+  }
+
 
 </script>
 </html>

@@ -1,4 +1,12 @@
+<?php
+  include '../../database/config.php';
+  session_start();
+  if(!isset($_SESSION["user_id"]))
+    header("Location:../index.php");
 
+  $test_id = $_POST['test_id'];
+  $name = $_POST['test_name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,56 +70,36 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-8">
-                    <h5 class="title">Computer Organization and Architecture (MCQ)</h5>
+                    <h5 class="title"><?= $name; ?></h5>
                   </div>
                 </div>  
               </div>
               <div class="card-body">
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                  <input type="hidden" name="general_settings"/>
-                  
-                    <div class="card" style="background:#ededed;">
-                        <div class="card-body">
-                            <h6>What is DBMS ?</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>Correct Count - 13</p>  
-                                </div> 
-                                <div class="col-md-6">
-                                    <p style="text-align:right;">Wrong Count - 12</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="background:#ededed;">
-                        <div class="card-body">
-                            <h6>What is DBMS ?</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>Correct Count - 13</p>  
-                                </div> 
-                                <div class="col-md-6">
-                                    <p style="text-align:right;">Wrong Count - 12</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="background:#ededed;">
-                        <div class="card-body">
-                            <h6>What is DBMS ?</h6>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>Correct Count - 13</p>  
-                                </div> 
-                                <div class="col-md-6">
-                                    <p style="text-align:right;">Wrong Count - 12</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    <?php
+                      $sql = "select * from score where test_id = '$test_id'";
+                      $result = mysqli_query($conn,$sql);
+                      while($row = mysqli_fetch_assoc($result)) {
+                        $question_id = $row["question_id"];
+                        $sql1 = "select * from questions where id = '$question_id'";
+                        $result1 = mysqli_query($conn,$sql1);
+                        $row1 = mysqli_fetch_assoc($result1);
+                        ?>
+                          <div class="card" style="background:#ededed;">
+                              <div class="card-body">
+                                  <h6><?= $row1["title"]; ?></h6>
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <p>Correct Count - <?= $row["correct_count"];?></p>  
+                                      </div> 
+                                      <div class="col-md-6">
+                                          <p style="text-align:right;">Wrong Count - <?= $row["wrong_count"];?></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                    <?php    
+                      }
+                    ?>
               </div>
             </div>
           </div>
