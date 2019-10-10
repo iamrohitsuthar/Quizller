@@ -289,9 +289,20 @@
                     <div class="form-group">
                       <button class="btn btn-primary btn-block" onclick="deleted()">DELETE TEST</button>
                     </div>  
-                  </div>
-                  
-                  </div>
+                  </div>        
+                </div>
+
+                <form id="form-student-data" method="POST" action="student_test_credentials.php">
+                    <input type="hidden" name="test_id" value="<?= $test_id;?>">
+                </form>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <button class="btn btn-primary btn-block" onclick="student_data()">GET STUDENT DATA</button>
+                    </div>
+                  </div>   
+                </div>
 
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                   <input type="hidden" name="other_settings">
@@ -408,6 +419,10 @@
 
     function deleted() {
       document.getElementById("form-deleted").submit();
+    }
+
+    function student_data() {
+      document.getElementById("form-student-data").submit();
     }
 </script>
 
