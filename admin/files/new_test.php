@@ -5,7 +5,6 @@ if(!isset($_SESSION["user_id"]))
 
 include '../../database/config.php';
 if(isset($_POST['new_test'])) {
-  echo "<script>console.log('aya');</script>";
   $test_name = $_POST['test_name'];
   $test_subject = $_POST['subject_name'];
   $test_date = $_POST['test_date'];
@@ -34,7 +33,6 @@ if(isset($_POST['new_test'])) {
   $sql = "INSERT INTO tests(teacher_id, name, date, status_id, subject, total_questions,class_id) VALUES('$teacher_id','$test_name','$test_date','$status_id','$test_subject','$total_questions','$class_id')";
   $result = mysqli_query($conn,$sql);
   if($result) {
-    echo "<script>console.log('Done');</script>";
     header("Location:dashboard.php");
   }
 }
