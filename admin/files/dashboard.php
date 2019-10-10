@@ -75,7 +75,6 @@ if(!isset($_SESSION["user_id"]))
               </div>
               <div class="card-body">
                   <?php
-
                     include '../../database/config.php';
                     $user_id = $_SESSION["user_id"];
                     $sql = "select * from tests where teacher_id = $user_id and status_id IN (1,2)";
