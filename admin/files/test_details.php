@@ -93,7 +93,6 @@
     $result4 = mysqli_query($conn,$sql4);
     while($row4 = mysqli_fetch_assoc($result4)) {
       $rollno_id = $row4["rollno"];
-      echo "<script>console.log(\"".$rollno_id."\");</script>";
       $sql3= "DELETE from student_data WHERE id = '$rollno_id' AND class_id IS NULL";
       $result3 = mysqli_query($conn,$sql3);
     }
@@ -107,7 +106,6 @@
   }
 
   if(isset($_POST['test_id'])) {
-    echo "<script>console.log('aya');</script>";
     $test_id = $_POST['test_id'];
     $sql = "SELECT * from tests where id = $test_id";
     $result = mysqli_query($conn,$sql);
@@ -334,6 +332,9 @@
                   <div class="col-md-8">
                     <h5 class="title">Test Questions</h5>
                   </div>
+                  <form id="form-add-questions" method="POST" action="add_question.php">
+                    <input type="hidden" name="test_id" value="<?= $test_id;?>">
+                  </form>
                   <div class="col-md-4">
                     <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_add_question()" style="margin-top:0px;width:200px !important;float:right !important;">ADD NEW QUESTION</button>
                   </div>
@@ -406,7 +407,7 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
     function redirect_to_add_question() {
-        window.location = "add_question.php";
+      document.getElementById("form-add-questions").submit();
     }
 
     $(document).ready(function() {

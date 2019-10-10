@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +30,59 @@
       include "sidebar.php";
     ?>
     <div class="main-panel">
+
+  <!--php code to redirect to the test details php after successfull question add-->
+    <?php
+      include '../../database/config.php';
+      $test_id = $_POST['test_id'];
+    ?>
+    <form id="form-completed" method="POST" action="test_details.php">
+        <input type="hidden" name="test_id" value="<?= $test_id;?>">
+    </form>
+    <script>
+        function completed() {
+          document.getElementById("form-completed").submit();
+        }
+    </script>
+    <?php
+      if(isset($_POST['add_question'])) {
+        $title = $_POST['title'];
+        $op_a = $_POST['op_a'];
+        $op_b = $_POST['op_b'];
+        $op_c = $_POST['op_c'];
+        $op_d = $_POST['op_d'];
+        $op_correct = $_POST['op_correct'];
+        $score = $_POST['score'];
+
+        $op_correct_text = "";
+
+        if($op_correct == "A" || $op_correct == "a") {
+          $op_correct_text = $_POST['op_a'];
+        }
+        else if($op_correct == "B" || $op_correct == "b") {
+          $op_correct_text = $_POST['op_a'];
+        }
+        else if($op_correct == "C" || $op_correct == "c") {
+          $op_correct_text = $_POST['op_c'];
+        }
+        else if($op_correct == "D" || $op_correct == "d") {
+          $op_correct_text = $_POST['op_d'];
+        }
+        
+        $sql = "INSERT INTO questions(title,optionA,optionB,optionC,optionD,correctAns,score) values('$title','$op_a','$op_b','$op_c','$op_d','$op_correct_text','$score')";
+        $result = mysqli_query($conn,$sql);
+        if($result) {
+          $question_id = mysqli_insert_id($conn);
+          $sql1 = "INSERT INTO question_test_mapping VALUES('$question_id','$test_id')";
+          mysqli_query($conn,$sql1);
+          echo "<script>console.log('done');</script>";
+          echo '<script type="text/javascript">',
+        'completed();',
+        '</script>';
+        }
+      }
+    ?>
+
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
         <div class="container-fluid">
@@ -66,39 +118,44 @@
               </div>
               <div class="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                  <input type="hidden" name="general_settings">
+                  <input type="hidden" name="add_question">
+                  <input type="hidden" name="test_id" value="<?= $test_id;?>">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Question title</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Question title" required/>
+                          <input type="text" class="form-control" name="title" placeholder="Question title" required/>
                       </div>
                       <div class="form-group">
                         <label>Option (A)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Option (A)" required/>
+                          <input type="text" class="form-control" name="op_a" placeholder="Option (A)" required/>
                       </div>
                       <div class="form-group">
                         <label>Option (B)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Option (B)" required/>
+                          <input type="text" class="form-control" name="op_b" placeholder="Option (B)" required/>
                       </div>
                       <div class="form-group">
                         <label>Option (C)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Option (C)" required/>
+                          <input type="text" class="form-control" name="op_c" placeholder="Option (C)" required/>
                       </div>
                       <div class="form-group">
                         <label>Option (D)</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Option (D)" required/>
+                          <input type="text" class="form-control" name="op_d" placeholder="Option (D)" required/>
                       </div>
                       <div class="form-group">
-                        <label>Correct Option</label>
-                          <input type="text" class="form-control" name="site_name" placeholder="Correct Option" required/>
+                        <label>Correct Option (A/B/C/D)</label>
+                          <input type="text" class="form-control" name="op_correct" placeholder="Correct Option" required/>
+                      </div>
+                      <div class="form-group">
+                        <label>Score</label>
+                          <input type="text" class="form-control" name="score" placeholder="Score" required/>
                       </div>
                     </div>
                   </div>
                   <div class="row center-element">
                     <div class="col-md-8">
                       <div class="form-group">
-                        <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_dashboard()">ADD QUESTION</button>
+                        <button class="btn btn-primary btn-block btn-round">ADD QUESTION</button>
                       </div>
                     </div>
                   </div>
@@ -125,9 +182,4 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
 </body>
-<script>
-  function redirect_to_dashboard() {
-    window.location = "dashboard.php";
-  }
-</script>
 </html>
