@@ -1,4 +1,8 @@
-
+<?php
+session_start();
+if(!isset($_SESSION["user_id"]))
+  header("Location:../index.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +80,8 @@
                   <?php
 
                     include '../../database/config.php';
-                    $sql = "select * from tests where teacher_id = 1";
+                    $user_id = $_SESSION["user_id"];
+                    $sql = "select * from tests where teacher_id = $user_id and status_id IN (1,2)";
                     $result = mysqli_query($conn,$sql);
                     if(mysqli_num_rows($result) > 0) {
                       while($row = mysqli_fetch_assoc($result)) {
