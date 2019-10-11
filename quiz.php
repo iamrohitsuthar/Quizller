@@ -9,6 +9,10 @@
 ?>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quizller- Quiz</title>
+        <link rel="icon" type="image/png" href="admin/assets/img/favicon.png">
         <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/header.css">
         <link rel="stylesheet" type="text/css" href="css/util.css">
