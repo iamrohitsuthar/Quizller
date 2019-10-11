@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="robots" content="noindex">
@@ -22,6 +23,7 @@
   <link href="../assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
   <link type="text/css" rel="stylesheet" href="http://jqueryte.com/css/jquery-te.css" charset="utf-8">
   <link href="../assets/css/main.css" rel="stylesheet" />
+
 </head>
 
 <body class="">
@@ -49,7 +51,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
-          <?php include "navitem.php"; ?>
+          <!-- <?php include "navitem.php"; ?> -->
         </div>
       </nav>
       <!-- End Navbar -->
@@ -66,61 +68,29 @@
                   </div>
                   <div class="col-md-2">
                     <select id="options" name="options" class="btn-round" required style="width:100%;">
-                        <option selected="true" value="" disabled="disabled">Select class</option>
-                        <option value="facebook">TE 1</option>
-                        <option value="instagram">TE 2</option>
-                        <option value="tumblr">TE 3</option>
-                        <option value="twitter">TE 4</option>
-                        <option value="linkedin">TE 5</option>
-                        <option value="google-plus">TE 6</option>
-                        <option value="youtube">TE 7</option>           
+                        <option id="" selected="true" value="" disabled="disabled">Select class</option>
+                       
                     </select>
                   </div>
                   <div class="col-md-2">
-                    <button class="btn btn-primary btn-block btn-round" style="margin-top:0px;width:100px !important;float:right !important;">FIND</button>    
+                    <button onclick = 'populateTable()' class="btn btn-primary btn-block btn-round" style="margin-top:0px;width:100px !important;float:right !important; onclick='getStudentsFromClass()' ">FIND</button>    
                   </div>
                 </div>  
               </div>
               <div class="card-body">
-                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <!-- <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> -->
                   <input type="hidden" name="general_settings"/>
-                    <table class="table contact_table table-striped table-bordered">
-                        <thead class=" text-primary">
-                        <th>
-                            SERIAL ID
-                        </th>
-                        <th>
-                            ROLL NUMBER
-                        </th>
-                        </thead>
-                        <tbody>                           
-                            <tr>
-                                <td>
-                                    1.
-                                </td>
-                                <td>
-                                    313001
-                                </td>     
-                            </tr>
-                            <tr>
-                                <td>
-                                    2.
-                                </td>
-                                <td>
-                                    313002
-                                </td>     
-                            </tr>
-                            <tr>
-                                <td>
-                                    3.
-                                </td>
-                                <td>
-                                    313003
-                                </td>     
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+                  <!-- table contact_table table-striped table-bordered -->
+                    
+                  <table id="roll_numbers_table">
+                  <thead>
+                      <tr>
+                          <th data-field= "id">ID</th>
+                          <th data-field="rollno">Roll Number</th>
+                      </tr>
+                  </thead>
+              </table>
+                <!-- </form> -->
               </div>
             </div>
           </div>
@@ -141,10 +111,41 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </body>
 <script>
-  function redirect_to_new_test() {
-    window.location = "new_test.php";
+
+var total_count;
+  $( document ).ready(function() {
+    $.ajax({
+						type: 'POST',
+						url: 'get_classes.php',
+						success: function (response) {
+              response.counter = 'foo';
+              var opts = $.parseJSON(response);
+                $.each(opts, function(i, d) {
+                    $('#options').append('<option value="' + d + '">' + d + '</option>');
+                });
+						}
+		});
+  });
+
+  function populateTable(){
+    $.ajax({
+						type: 'POST',
+						url: 'get_student_from_class.php',
+            data : {
+              'class_name' : $('#options option:selected').val(),
+            },
+            datatype : 'json',
+						success: function (response) {
+              var jsondata = JSON.parse(response);
+                $('#roll_numbers_table').bootstrapTable({
+                  data:jsondata,
+                });
+          }
+    });
   }
+  
 </script>
 </html>
