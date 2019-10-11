@@ -5,6 +5,11 @@
 
 <html>
 	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="keywords" content="iamrohitsuthar,Iamrohitsuthar,i am rohit suthar,Hi i am rohit suthar,Hi iamrohitsuthar,i am Rohit Suthar,I am RohitSuthar,mrrohitsuthar,rohit suthar,RohitSuthar,Rohit Suthar,rohitsuthar website,rohit suthar website,programmer,amravati,rohitsuthar,rohit suthar blog,Rohit Suthar,Rohit,Suthar,Rohit Karma,Suthar Rohit,iamrohitsuthar blog,iamrohitsuthar twitter,iamrohitsuthar instagram,iamrohitsuthar stackoverflow,iamrohitsuthar github,iamrohitsuthar linkedin,iamrohitsuthar website">
+	    <title>Quizller</title>
+	    <link rel="icon" type="image/png" href="admin/assets/img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/header.css">
 		<link rel="stylesheet" type="text/css" href="css/util.css">
@@ -39,7 +44,7 @@
 			<!-- Header Mobile -->
 			<div class="wrap_header_mobile">
 				<!-- Logo moblie -->
-				<a href="index.html" class="logo-mobile">
+				<a href="index.php" class="logo-mobile">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
