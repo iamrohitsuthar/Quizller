@@ -9,10 +9,6 @@
 ?>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quizller- Quiz</title>
-        <link rel="icon" type="image/png" href="admin/assets/img/favicon.png">
         <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/header.css">
         <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -22,6 +18,28 @@
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="vendor/tilt/tilt.jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+        <style>
+			.loader {
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #3498db;
+			  width: 120px;
+			  height: 120px;
+			  -webkit-animation: spin 2s linear infinite; /* Safari */
+			  animation: spin 2s linear infinite;
+			}
+
+			/* Safari */
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+		</style>
     </head>
     <body>
     <header class="header1">
@@ -74,20 +92,24 @@
                                                         <div class="container-fluid">
                                                             <div class="modal-dialog" style="max-width: 100%">
                                                             <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5><span class="label label-warning" id="qid">1</span> <span id="question">Which framework is used for native app development</span></h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                <div class="col-xs-3 col-xs-offset-5">
-                                                                </div>
+                                                            	<div id="loader"class="loader" style="margin-left:45%;display:gone;"></div>
+                                                            	<div id="content">
+	                                                                <div class="modal-header">
+	                                                                    <h5><span class="label label-warning" id="qid">1</span> <span id="question"></span></h5>
+	                                                                </div>
+	                                                                <div class="modal-body">
 
-                                                                <div class="quiz" id="quiz" data-toggle="buttons">
-                                                                <label id="optionA" onclick="getSelectedItem('a')" class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label" ><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1" onclick="alert('Jp')">1. Ionic</label>
-                                                                <label id="optionB" onclick="getSelectedItem('b')" class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2. Django</label>
-                                                                <label id="optionC" onclick="getSelectedItem('c')" class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3. Laravel</label>
-                                                                <label id="optionD" onclick="getSelectedItem('d')" class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4. Pandas</label>
-                                                            </div>
-                                                            </div>
+		                                                                <div class="col-xs-3 col-xs-offset-5">
+		                                                                </div>
+
+		                                                                <div class="quiz" id="quiz" data-toggle="buttons">
+			                                                                <label id="optionA" onclick="getSelectedItem('a')" class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label" ><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1" onclick="alert('Jp')"></label>
+			                                                                <label id="optionB" onclick="getSelectedItem('b')" class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2"></label>
+			                                                                <label id="optionC" onclick="getSelectedItem('c')" class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3"></label>
+			                                                                <label id="optionD" onclick="getSelectedItem('d')" class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4"></label>
+			                                                            </div>
+		                                                            </div>
+	                                                        	</div>
                                                         </div>
                                                         </div>
                                                         </div>
@@ -121,6 +143,11 @@
             })	
 
             function getSelectedItem(val){
+            	var temp = document.getElementById('content');
+            	var temp1 = document.getElementById('loader');
+            	temp.style.display = 'none';
+            	temp1.style.display = 'block';
+
                 Cookies.set('last_question_was_answered', 'true')
                 
                 /*if(val == question_data.correctAns){        //Correct Answer
@@ -189,12 +216,17 @@
             }
 
             function loadQuestion(question_data){
+            	var temp = document.getElementById('content');
+            	var temp1 = document.getElementById('loader');
+            	temp.style.display = 'block';
+            	temp1.style.display = 'none';
+
                 $('#qid').text(question_data.id);
                 $('#question').text(question_data.title);
-                $('#optionA').text(question_data.optionA);
-                $('#optionB').text(question_data.optionB);
-                $('#optionC').text(question_data.optionC);
-                $('#optionD').text(question_data.optionD);
+                $('#optionA').text('A)   ' + question_data.optionA);
+                $('#optionB').text('B)   ' + question_data.optionB);
+                $('#optionC').text('C)   ' + question_data.optionC);
+                $('#optionD').text('D)   ' + question_data.optionD);
             }
 
             function logout(){
