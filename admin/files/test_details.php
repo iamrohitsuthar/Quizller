@@ -1,6 +1,9 @@
 <?php
   include '../../database/config.php';
 
+  require_once('../assets/vendor/excel_reader2.php');
+  require_once('../assets/vendor/SpreadsheetReader.php');
+
   if(isset($_POST['general_settings_update'])) {
     $test_id = $_POST['test_id'];
     $test_name = $_POST['test_name'];
@@ -329,12 +332,16 @@
             <div class="card" style="min-height:400px;">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                     <h5 class="title">Test Questions</h5>
                   </div>
                   <form id="form-add-questions" method="POST" action="add_question.php">
                     <input type="hidden" name="test_id" value="<?= $test_id;?>">
                   </form>
+                  <div class="col-md-4">
+                    <button class="btn btn-primary btn-block btn-round" data-toggle="modal" data-target="#exampleModal" style="margin-top:0px;width:200px !important;float:right !important;">UPLOAD</button>
+                  </div>
+
                   <div class="col-md-4">
                     <button class="btn btn-primary btn-block btn-round" onclick="redirect_to_add_question()" style="margin-top:0px;width:200px !important;float:right !important;">ADD NEW QUESTION</button>
                   </div>
@@ -358,7 +365,7 @@
                         <?php
                           $sql = "select question_id from question_test_mapping where test_id = $test_id";
                           $result = mysqli_query($conn,$sql);
-                          $i = 0;
+                          $i = 1;
                           while($row = mysqli_fetch_assoc($result)) {
                             $question_id = $row["question_id"];
                             $sql1 = "select * from questions where id = $question_id";
@@ -388,6 +395,32 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <form id="form-file-upload" name="form-file-upload" method="POST" action="file_upload.php" enctype="multipart/form-data">
+          <input type="hidden" name="file_upload">
+          <input type="hidden" name="test_id" id ="test_id" value="<?= $test_id; ?>">
+          <input type="hidden" name="tmp_name" id="tmp_name">
+          <input type="hidden" name="type" id="type"> 
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Select excel file to import</h5>
+            </div>
+            <div class="modal-body">
+            <input type="file" name="file" id="file" accept=".xls,.xlsx,.ods">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="file_upload_submit()">Upload</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+
+
       <!-- footer -->
       <?php
         include "footer.php";
@@ -425,8 +458,11 @@
     function student_data() {
       document.getElementById("form-student-data").submit();
     }
-</script>
 
+    function file_upload_submit() {
+      document.getElementById("form-file-upload").submit();
+    }
+</script>
 <?php
 //Checking if general settings updated successfully
   if($general_settings == "true")
