@@ -1,8 +1,9 @@
 <?php
     include '../../database/config.php';
+    session_start();
+    if(!isset($_SESSION["user_id"]))
+      header("Location:../index.php");
     $test_id = $_POST['test_id'];
-    echo "<script>console.log('aya kyu');</script>";
-    echo "<script>console.log(\"".$test_id."\");</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
