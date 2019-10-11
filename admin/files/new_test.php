@@ -5,7 +5,6 @@ if(!isset($_SESSION["user_id"]))
 
 include '../../database/config.php';
 if(isset($_POST['new_test'])) {
-  echo "<script>console.log('aya');</script>";
   $test_name = $_POST['test_name'];
   $test_subject = $_POST['subject_name'];
   $test_date = $_POST['test_date'];
@@ -29,13 +28,36 @@ if(isset($_POST['new_test'])) {
     $class_id = $class_row["id"];
   }
 
+  function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
+
   $teacher_id = $_SESSION["user_id"];
   //creating new test
   $sql = "INSERT INTO tests(teacher_id, name, date, status_id, subject, total_questions,class_id) VALUES('$teacher_id','$test_name','$test_date','$status_id','$test_subject','$total_questions','$class_id')";
   $result = mysqli_query($conn,$sql);
+  $test_id = mysqli_insert_id($conn);
   if($result) {
-    echo "<script>console.log('Done');</script>";
-    header("Location:dashboard.php");
+    //creating student entry in students table for the test
+    $sql1 = "select id from student_data where class_id = '$class_id'";
+    $result1 = mysqli_query($conn,$sql1);
+    $temp = 8 - strlen($test_id);
+    while($row1 = mysqli_fetch_assoc($result1)) {
+      $rollno = $row1["id"];
+      $random = generateRandomString($temp);
+      $random = $random . $test_id;
+      $sql2 = "INSERT INTO students(test_id,rollno,password,score,status) VALUES ('$test_id','$rollno','$random',0,0)";
+      $result2 = mysqli_query($conn,$sql2);
+      if($result2) {
+        header("Location:dashboard.php");
+      }
+    }
   }
 }
 ?>
@@ -130,20 +152,35 @@ if(isset($_POST['new_test'])) {
                             <div class="col-md-6">
                                 <select id="options" name="test_status" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select test status</option>
-                                  <option value="pending">PENDING</option>
-                                  <option value="running">RUNNING</option>                                
+                                  <?php
+
+                                      $sql = "select * from status where id IN(1,2)";
+                                      $result = mysqli_query($conn,$sql);
+                                      while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+
+                                        <option value="<?= $row["name"];?>"><?= $row["name"];?></option>
+
+                                        <?php
+                                      }
+                                      ?>                                 
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <select id="options" name="test_class" class="btn-round" required style="width:100%;">
                                   <option selected="true" value="" disabled="disabled">Select class for test</option>
-                                  <option value="TE1">TE 1</option>
-                                  <option value="TE2">TE 2</option>
-                                  <option value="TE3">TE 3</option>
-                                  <option value="TE4">TE 4</option>
-                                  <option value="TE5">TE 5</option>
-                                  <option value="TE6">TE 6</option>
-                                  <option value="TE7">TE 7</option>           
+                                  <?php
+
+                                      $sql = "select * from classes";
+                                      $result = mysqli_query($conn,$sql);
+                                      while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+
+                                        <option value="<?= $row["name"];?>"><?= $row["name"];?></option>
+
+                                        <?php
+                                      }
+                                    ?>          
                                 </select>
                             </div>
                         </div>

@@ -1,11 +1,8 @@
 <?php
-  include '../../database/config.php';
-  session_start();
-  if(!isset($_SESSION["user_id"]))
-    header("Location:../index.php");
-
-  $test_id = $_POST['test_id'];
-  $name = $_POST['test_name'];
+    include '../../database/config.php';
+    $test_id = $_POST['test_id'];
+    echo "<script>console.log('aya kyu');</script>";
+    echo "<script>console.log(\"".$test_id."\");</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +47,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Statistics</a>
+            <a class="navbar-brand" href="#pablo">Student Test Credentials</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -70,36 +67,54 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-8">
-                    <h5 class="title"><?= $name; ?></h5>
+                    <h5 class="title">Students Test Credentials</h5>
                   </div>
                 </div>  
               </div>
               <div class="card-body">
-                    <?php
-                      $sql = "select * from score where test_id = '$test_id'";
-                      $result = mysqli_query($conn,$sql);
-                      while($row = mysqli_fetch_assoc($result)) {
-                        $question_id = $row["question_id"];
-                        $sql1 = "select * from questions where id = '$question_id'";
-                        $result1 = mysqli_query($conn,$sql1);
-                        $row1 = mysqli_fetch_assoc($result1);
-                        ?>
-                          <div class="card" style="background:#ededed;">
-                              <div class="card-body">
-                                  <h6><?= $row1["title"]; ?></h6>
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <p>Correct Count - <?= $row["correct_count"];?></p>  
-                                      </div> 
-                                      <div class="col-md-6">
-                                          <p style="text-align:right;">Wrong Count - <?= $row["wrong_count"];?></p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                    <?php    
-                      }
-                    ?>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                  <input type="hidden" name="general_settings"/>
+                    <table class="table contact_table table-striped table-bordered">
+                        <thead class=" text-primary">
+                        <th>
+                            SERIAL ID
+                        </th>
+                        <th>
+                            ROLL NUMBER
+                        </th>
+                        <th>
+                            Password
+                        </th>
+                        </thead>
+                        <tbody>  
+                        <?php
+                            $sql = "SELECT rollno,password from students where test_id = '$test_id'";
+                            $result = mysqli_query($conn,$sql);
+                            $i = 1;
+                            while($row = mysqli_fetch_assoc($result)) {
+                                $rollno_id = $row["rollno"];
+                                $sql1 = "SELECT * from student_data where id = $rollno_id";
+                                $result1 = mysqli_query($conn,$sql1);
+                                $row1 = mysqli_fetch_assoc($result1);
+                            ?>    
+                                <tr>
+                                    <td>
+                                        <?= $i; ?>
+                                    </td>
+                                    <td>
+                                        <?= $row1["rollno"];?>
+                                    </td>     
+                                    <td>
+                                        <?= $row["password"];?>
+                                    </td>     
+                                </tr>
+                        <?php
+                            $i++;
+                            }       
+                        ?>                         
+                        </tbody>
+                    </table>
+                </form>
               </div>
             </div>
           </div>
@@ -121,4 +136,9 @@
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
   <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
 </body>
+<script>
+  function redirect_to_new_test() {
+    window.location = "new_test.php";
+  }
+</script>
 </html>
