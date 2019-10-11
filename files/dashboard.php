@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['student_details']))
-        header("Location: index.php"); 
+        header("Location: ../index.php"); 
     if(isset($_SESSION['test_ongoing']))
         header("Location: quiz.php"); 
 ?>
@@ -12,13 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizller- Dashboard</title>
     <link rel="icon" type="image/png" href="admin/assets/img/favicon.png">
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/tilt/tilt.jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/tilt/tilt.jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
 </head>
@@ -30,14 +30,14 @@
         <div class="container-menu-header">
             <div class="wrap_header">
                 <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <img src="images/icons/logo.png" alt="IMG-LOGO">
+                <a href="../index.php" class="logo">
+                    <img src="../images/icons/logo.png" alt="IMG-LOGO">
                 </a>
 
                 <!-- Header Icon -->
                 <div class="header-icons">
                     <a href="#" class="header-wrapicon1 dis-block">
-                        <img src="images/icons/logout.png" class="header-icon1" alt="ICON" onclick='logout()'>
+                        <img src="../images/icons/logout.png" class="header-icon1" alt="ICON" onclick='logout()'>
                     </a>
                 </div>
             </div>
@@ -46,8 +46,8 @@
         <!-- Header Mobile -->
         <div class="wrap_header_mobile">
             <!-- Logo moblie -->
-            <a href="index.html" class="logo-mobile">
-                <img src="images/icons/logo.png" alt="IMG-LOGO">
+            <a href="../index.php" class="logo-mobile">
+                <img src="../images/icons/logo.png" alt="IMG-LOGO">
             </a>
 
             <!-- Button show menu -->
@@ -55,7 +55,7 @@
                 <!-- Header Icon mobile -->
                 <div class="header-icons-mobile">
                     <a href="#" class="header-wrapicon1 dis-block">
-                        <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                        <img src="../images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
                     </a>
                 </div>
             </div>
@@ -127,7 +127,7 @@
         }
 
 
-        /*
+      
         <?php
     session_start();
     
@@ -136,16 +136,13 @@
         header("Location: quiz.php");
     }else if(!isset($_SESSION['student_details'])){
         echo "You are not logged in";
-        header("Location: index.html");
+        header("Location: ../index.php");
     }
 
     function createCard(array $row) { ?>
   
 <?php } ?>
 
-
-
-*/
     </script>
 </body>
 

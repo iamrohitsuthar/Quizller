@@ -1,6 +1,6 @@
 <?php
 	if(isset($_SESSION['test_ongoing']))
-		header("Location: quiz.php");
+		header("Location: files/quiz.php");
 ?>
 
 <html>
@@ -137,7 +137,7 @@
 				if (!someFieldIsEmpty) {
 					$.ajax({
 						type: 'POST',
-						url: 'student_login.php',
+						url: 'files/student_login.php',
 						data: {
 							'rollNumber': $('#studentRollNumber').val(),
 							'password': $('#studentPassword').val(),
@@ -145,10 +145,8 @@
 						success: function (response) {
 							if(response == "STUDENT_RECORD_NOT_FOUND")
 								alert("Wrong Credentails entered");
-							else{
-								
-								window.location.replace("dashboard.php");
-							}
+							else
+								window.location.replace("files/dashboard.php");
 						}
 					});
 				}

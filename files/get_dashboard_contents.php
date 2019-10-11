@@ -1,6 +1,6 @@
 <?php
         session_start();
-        include 'database/config.php';
+        include '../database/config.php';
         $testName;
 
         if(isset($_SESSION['student_details'])){

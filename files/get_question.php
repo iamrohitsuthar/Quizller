@@ -1,8 +1,8 @@
 <?php
         session_start();
-        include 'database/config.php';
+        include '../database/config.php';
         if(!isset($_SESSION['test_id'])){
-            header("Location: index.php");
+            header("Location: ../index.php");
         }
             $test_id = $_SESSION['test_id'];
     

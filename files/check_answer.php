@@ -3,7 +3,7 @@
     /*if(!isset($_SESSION['student_details']))
         header("Location: index.php");*/
 
-    include 'database/config.php';
+    include '../database/config.php';
     $selected_option = $_POST['selected_option'];
     $question_id = $_POST['question_id'];
     $score_earned = $_POST['score'];

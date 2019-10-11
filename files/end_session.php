@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include '../database/config.php';
     $temp = $_SESSION['student_details'];
     $student_data = json_decode($data);
 
