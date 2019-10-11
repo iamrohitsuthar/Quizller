@@ -19,7 +19,7 @@
 
             for ($x = $starting_roll_number; $x <= $ending_roll_number; $x++) {
                 $insert_roll_numbers = "INSERT INTO student_data (rollno, class_id)
-                VALUES ($x, $class_id)";
+                VALUES ('".$x."', $class_id)";
 
                 mysqli_query($conn, $insert_roll_numbers);
             }
