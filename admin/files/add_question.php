@@ -75,7 +75,6 @@
           $question_id = mysqli_insert_id($conn);
           $sql1 = "INSERT INTO question_test_mapping VALUES('$question_id','$test_id')";
           mysqli_query($conn,$sql1);
-          echo "<script>console.log('done');</script>";
           echo '<script type="text/javascript">',
         'completed();',
         '</script>';
