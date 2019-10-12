@@ -367,6 +367,7 @@ if(!isset($_SESSION["user_id"]))
                             <th>Option (D)</th>
                             <th>Correct Option</th>
                             <th>Score</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -380,7 +381,8 @@ if(!isset($_SESSION["user_id"]))
                             $result1 = mysqli_query($conn,$sql1);
                             $row1 = mysqli_fetch_assoc($result1);
                             ?>
-                            <tr>
+                            <tr id = "<?= $row1["id"]; ?>">
+                              <input type="hidden" id="question_id" value="<?= $row1["id"]; ?>">
                               <td><?= $i;?></td>
                               <td><?= $row1["title"];?></td>
                               <td><?= $row1["optionA"];?></td>
@@ -389,6 +391,7 @@ if(!isset($_SESSION["user_id"]))
                               <td><?= $row1["optionD"];?></td>
                               <td><?= $row1["correctAns"];?></td>
                               <td><?= $row1["score"];?></td>
+                              <td><button id="delete" name="delete" class="btn btn-primary btn-block btn-round" onclick="delete_question('<?= $row1["id"]; ?>','<?php echo $test_id; ?>')">DELETE</button></td>
                             </tr>
 
                           <?php
@@ -470,6 +473,22 @@ if(!isset($_SESSION["user_id"]))
     function file_upload_submit() {
       document.getElementById("form-file-upload").submit();
     }
+
+    function delete_question(temp,testid) {
+      var temp1 = document.getElementById(temp);
+      temp1.style.display = 'none';
+      $.ajax({
+          type: 'POST',
+          url: 'delete_question.php',
+          data: {
+            'question_id': temp,
+            'test_id': testid,
+          },
+          success: function (response) {
+          }
+      });
+    }
+
 </script>
 <?php
 //Checking if general settings updated successfully
