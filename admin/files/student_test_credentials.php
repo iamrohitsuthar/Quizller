@@ -89,7 +89,7 @@
                         </thead>
                         <tbody>  
                         <?php
-                            $sql = "SELECT rollno,password from students where test_id = '$test_id'";
+                            $sql = "SELECT id,rollno,password from students where test_id = '$test_id' order by id ASC";
                             $result = mysqli_query($conn,$sql);
                             $i = 1;
                             while($row = mysqli_fetch_assoc($result)) {
