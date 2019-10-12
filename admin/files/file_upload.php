@@ -88,6 +88,8 @@
                         $question_id = mysqli_insert_id($conn);
                         $sql1 = "INSERT INTO question_test_mapping VALUES('$question_id','$test_id')";
                         $result1 = mysqli_query($conn,$sql1);
+                        $sql2 = "INSERT INTO score(test_id, question_id, correct_count, wrong_count) VALUES('$test_id','$question_id',0,0)";
+                        mysqli_query($conn,$sql2);
                         if($result1) {
                             echo "<script>console.log('success');</script>";
                             echo '<script type="text/javascript">',

@@ -51,6 +51,8 @@ if(!isset($_SESSION["user_id"]))
     </script>
     <?php
       if(isset($_POST['add_question'])) {
+        echo "<script>console.log('".$test_id."');</script>";
+        echo "<script>console.log('here');</script>";
         $title = $_POST['title'];
         $op_a = $_POST['op_a'];
         $op_b = $_POST['op_b'];
@@ -73,13 +75,25 @@ if(!isset($_SESSION["user_id"]))
         else if($op_correct == "D" || $op_correct == "d") {
           $op_correct_text = $_POST['op_d'];
         }
+        echo "<script>console.log('".$title."');</script>";
+        echo "<script>console.log('".$op_a."');</script>";
+        echo "<script>console.log('".$op_b."');</script>";
+        echo "<script>console.log('".$op_c."');</script>";
+        echo "<script>console.log('".$op_d."');</script>";
+        echo "<script>console.log('".$op_correct_text."');</script>";
+        echo "<script>console.log('".$score."');</script>";
+        
         
         $sql = "INSERT INTO Questions(title,optionA,optionB,optionC,optionD,correctAns,score) values('$title','$op_a','$op_b','$op_c','$op_d','$op_correct_text','$score')";
         $result = mysqli_query($conn,$sql);
+        echo "<script>console.log('done 1');</script>";
         if($result) {
+          echo "<script>console.log('done 2');</script>";
           $question_id = mysqli_insert_id($conn);
           $sql1 = "INSERT INTO question_test_mapping VALUES('$question_id','$test_id')";
           mysqli_query($conn,$sql1);
+          $sql2 = "INSERT INTO score(test_id, question_id, correct_count, wrong_count) VALUES('$test_id','$question_id',0,0)";
+          mysqli_query($conn,$sql2);
           echo '<script type="text/javascript">',
         'completed();',
         '</script>';
