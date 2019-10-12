@@ -96,6 +96,9 @@ if(!isset($_SESSION["user_id"]))
     $delete = false;
     $sql1= "DELETE from question_test_mapping WHERE test_id = $test_id";
     $result1 = mysqli_query($conn,$sql1);
+
+    $sql5= "DELETE from score WHERE test_id = $test_id";
+    $result5 = mysqli_query($conn,$sql5);
     
     $sql4 = "SELECT rollno from students where test_id = $test_id";
     $result4 = mysqli_query($conn,$sql4);
