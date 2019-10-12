@@ -55,7 +55,7 @@
                 <!-- Header Icon mobile -->
                 <div class="header-icons-mobile">
                     <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="../images/icons/logout.png" class="header-icon1" alt="ICON" onclick = 'logout()'>
+                        <img src="../images/icons/logout.png" class="header-icon1" alt="ICON" onclick = 'logout()'>
                     </a>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                             <div class="card" style="padding-bottom: 20px;">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" id="row" style="display:none;">
                                                 <div class="card" style="background: #ededed;margin:20px 10px 0px 10px;">
                                                     <div class="card-body">
                                                         <div class="container">
@@ -99,12 +99,24 @@
     </section>
 
     <script>
+        function isEmpty(str) {
+            return (!str || 0 === str.length);
+        }
+
         $(document).ready(function () {
             $.ajax({
                 type: 'POST',
                 url: 'get_dashboard_contents.php',
                 success: function (response) {
-                    $('#test_name').text(response);
+                    console.log('hi');
+                    console.log(response);
+                    console.log(response.length);
+                    if(response.length > 0) {
+                        console.log('not');
+                        var temp = document.getElementById('row');
+                        temp.style.display = 'block';
+                        $('#test_name').text(response);
+                    }
                 }
             });
         });
