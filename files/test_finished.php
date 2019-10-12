@@ -48,7 +48,7 @@
 			setTimeout(function() { 
 				Cookies.remove('test_submitted_status');
                 window.location.replace("../index.php");
-           }, 5000);
+           }, 3000);
 			}
 
 		$('.js-tilt').tilt({
