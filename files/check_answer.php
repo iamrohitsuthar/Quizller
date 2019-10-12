@@ -18,7 +18,7 @@
     if (!$conn) 
         die("Connection failed: " . mysqli_connect_error());
     else{
-        $result = mysqli_query($conn, "SELECT id FROM Questions WHERE id = '".$question_id."' AND correctAns LIKE '%{$selected_option}%' LIMIT 1 ");        
+        $result = mysqli_query($conn, "SELECT id FROM Questions WHERE id = '".$question_id."' AND correctAns = '".$selected_option."' LIMIT 1 ");        
         if (mysqli_num_rows($result) > 0){
             //increase question corerct count
             $sql = "UPDATE score set correct_count = correct_count + 1 where question_id = '$question_id'";

@@ -72,7 +72,7 @@
                     <!-- Header Icon mobile -->
                     <div class="header-icons-mobile">
                         <a href="#" class="header-wrapicon1 dis-block">
-                        <img src="../images/icons/logout.png" class="header-icon1" alt="ICON" onclick = 'logout()'>
+                            <img src="../images/icons/logout.png" class="header-icon1" alt="ICON" onclick = 'logout()'>
                         </a>
                         </div>
                     </div>
@@ -126,7 +126,13 @@
 
         <script>
             var question_data;
+            var question_count = 1;
             $(document).ready(function(){
+                var temp = document.getElementById('content');
+                var temp1 = document.getElementById('loader');
+                temp.style.display = 'none';
+                temp1.style.display = 'block';
+
                 if(Cookies.get('last_question_was_answered') == undefined || Cookies.get('last_question_was_answered') == "true"){
                     createQuestion();
                     Cookies.set('last_question_was_answered', 'false')
@@ -221,12 +227,13 @@
             	temp.style.display = 'block';
             	temp1.style.display = 'none';
 
-                $('#qid').text(question_data.id);
+                $('#qid').text(question_count);
                 $('#question').text(question_data.title);
                 $('#optionA').text('A)   ' + question_data.optionA);
                 $('#optionB').text('B)   ' + question_data.optionB);
                 $('#optionC').text('C)   ' + question_data.optionC);
                 $('#optionD').text('D)   ' + question_data.optionD);
+                question_count++;
             }
 
             function logout(){

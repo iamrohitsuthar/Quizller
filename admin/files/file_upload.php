@@ -63,16 +63,16 @@
                     $op_correct = mysqli_real_escape_string($conn,$Row[5]);
 
                     if($op_correct == "A" || $op_correct == "a") {
-                        $op_correct_text = $op_a;
+                        $op_correct_text = "a";
                     }
                     else if($op_correct == "B" || $op_correct == "b") {
-                        $op_correct_text = $op_b;
+                        $op_correct_text = "b";
                     }
                     else if($op_correct == "C" || $op_correct == "c") {
-                        $op_correct_text = $op_c;
+                        $op_correct_text = "c";
                     }
                     else if($op_correct == "D" || $op_correct == "d") {
-                        $op_correct_text = $op_d;
+                        $op_correct_text = "d";
                     } 
                 }
 
