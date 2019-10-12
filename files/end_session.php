@@ -2,7 +2,7 @@
     session_start();
     include '../database/config.php';
     $temp = $_SESSION['student_details'];
-    $student_data = json_decode($data);
+    $student_data = json_decode($temp);
 
     foreach($student_data as $obj){
         $student_id = $obj->id;
