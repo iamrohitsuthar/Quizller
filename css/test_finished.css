@@ -1,0 +1,31 @@
+body{
+    background-color: 9053c7;
+}
+
+h5{
+    margin: 0;
+    width: 100%;
+    position: absolute;               
+    top: 50%;      
+    font-size: 40px;
+    margin-top: -40px;
+    transform: translate(0, -50%);
+    text-align: center;
+    color: white;
+    size: 100;
+    font-weight: bold;
+} 
+
+button{
+    margin: 0;
+    width: 100%;
+    position: static;               
+    top: 50%;      
+    font-size: 40px;
+    margin-top: -40px;
+    transform: translate(0, -50%);
+    text-align: center;
+    color: white;
+    size: 100;
+    font-weight: bold;  
+}
