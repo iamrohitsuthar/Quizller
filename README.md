@@ -1,3 +1,5 @@
+<p align="center"><img src="https://github.com/iamrohitsuthar/Quizller/blob/master/images/icons/logo.png"/></p>
+
 # Quizller - Quiz System
 <table>
   <tr>
