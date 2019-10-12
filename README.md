@@ -2,7 +2,7 @@
 <table>
   <tr>
     <td>
-      Quizller is a Quiz System that allows to create quizes and take quiz test.
+       Quizller is a php based open source web application to create and manage online quiz, test, exam. 
     </td>
   </tr>
 </table>
