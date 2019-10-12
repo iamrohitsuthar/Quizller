@@ -82,7 +82,7 @@
                 }
 
                 if (!empty($title) || !empty($op_a) || !empty($op_b) || !empty($op_c) || !empty($op_d) || !empty($op_correct_text) || !empty($score)) {
-                    $sql = "INSERT INTO questions(title,optionA,optionB,optionC,optionD,correctAns,score) values('$title','$op_a','$op_b','$op_c','$op_d','$op_correct_text','$score')";
+                    $sql = "INSERT INTO Questions(title,optionA,optionB,optionC,optionD,correctAns,score) values('$title','$op_a','$op_b','$op_c','$op_d','$op_correct_text','$score')";
                     $result = mysqli_query($conn,$sql);
                     if($result) {
                         $question_id = mysqli_insert_id($conn);
