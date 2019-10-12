@@ -80,7 +80,7 @@
                       $result = mysqli_query($conn,$sql);
                       while($row = mysqli_fetch_assoc($result)) {
                         $question_id = $row["question_id"];
-                        $sql1 = "select * from questions where id = '$question_id'";
+                        $sql1 = "select * from Questions where id = '$question_id'";
                         $result1 = mysqli_query($conn,$sql1);
                         $row1 = mysqli_fetch_assoc($result1);
                         ?>
