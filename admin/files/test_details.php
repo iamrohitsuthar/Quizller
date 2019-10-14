@@ -28,13 +28,13 @@ if(!isset($_SESSION["user_id"]))
       $status_id = $status_row["id"];
     }
     //getting class id
-    $class_sql = "SELECT id from classes where name LIKE '%$test_class%'";
-    $class_result = mysqli_query($conn,$class_sql);
-    if(mysqli_num_rows($class_result) > 0) {
-      $class_row = mysqli_fetch_assoc($class_result);
-      $class_id = $class_row["id"];
-    }
-    $sql = "UPDATE tests SET name = '$test_name', date = '$test_date', status_id = '$status_id', subject = '$test_subject', total_questions = '$total_questions', class_id = '$class_id' WHERE id = '$test_id'";
+    // $class_sql = "SELECT id from classes where name LIKE '%$test_class%'";
+    // $class_result = mysqli_query($conn,$class_sql);
+    // if(mysqli_num_rows($class_result) > 0) {
+    //   $class_row = mysqli_fetch_assoc($class_result);
+    //   $class_id = $class_row["id"];
+    // }
+    $sql = "UPDATE tests SET name = '$test_name', date = '$test_date', status_id = '$status_id', subject = '$test_subject', total_questions = '$total_questions' WHERE id = '$test_id'";
     $result = mysqli_query($conn,$sql);
     if($result) {
       $general_settings = true;
@@ -238,23 +238,6 @@ if(!isset($_SESSION["user_id"]))
                                 <?php
                               }
                             ?>                             
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <select id="options" name="test_class" class="btn-round" required style="width:100%;">
-                            <option selected="true" value="" disabled="disabled">Select class for test</option>
-                            <?php
-
-                              $sql = "select * from classes";
-                              $result = mysqli_query($conn,$sql);
-                              while($row = mysqli_fetch_assoc($result)) {
-                                ?>
-
-                                <option value="<?= $row["name"];?>" <?php if($class == $row["name"]) echo "selected"; ?> ><?= $row["name"];?></option>
-
-                                <?php
-                              }
-                            ?>           
                         </select>
                       </div>
                     </div>
