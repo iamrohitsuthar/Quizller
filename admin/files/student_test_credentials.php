@@ -1,9 +1,41 @@
 <?php
     include '../../database/config.php';
+    include "../assets/vendor/fpdf/fpdf.php";
+
     session_start();
     if(!isset($_SESSION["user_id"]))
       header("Location:../index.php");
     $test_id = $_POST['test_id'];
+
+
+   	if(isset($_POST['print'])) {
+   		$test_id = $_POST['test_id'];
+
+		$pdf = new FPDF();
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',12);
+
+        $sql = "SELECT id,rollno,password from students where test_id = '$test_id' order by id ASC";
+        $result = mysqli_query($conn,$sql);
+        $i = 1;
+        while($row = mysqli_fetch_assoc($result)) {
+            $rollno_id = $row["rollno"];
+            $sql1 = "SELECT * from student_data where id = $rollno_id";
+            $result1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+        	$pdf->Cell(30,12,$row1["rollno"],1,0,"C");
+        	if( $i%3 == 0 )
+        		$pdf->MultiCell(30,12,$row["password"]."\n",1,"C");
+        	else
+    		{
+    			$pdf->Cell(30,12,$row["password"]."\t",1,0,"C");
+    			$pdf->Cell(5,12,"\t",0,0,"C");
+    		}
+        	$i++;
+   		}
+   		$pdf->Output();   	
+   	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +102,12 @@
                   <div class="col-md-8">
                     <h5 class="title">Students Test Credentials</h5>
                   </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-block btn-round" onclick="completed()" style="margin-top:0px;width:100px !important;float:right !important;">Print</button>
+                  </div>
                 </div>  
               </div>
-              <div class="card-body">
+              <div class="card-body" id="card-body">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                   <input type="hidden" name="general_settings"/>
                     <table class="table contact_table table-striped table-bordered">
@@ -89,6 +124,7 @@
                         </thead>
                         <tbody>  
                         <?php
+
                             $sql = "SELECT id,rollno,password from students where test_id = '$test_id' order by id ASC";
                             $result = mysqli_query($conn,$sql);
                             $i = 1;
@@ -121,6 +157,11 @@
           </div>
         </div>
       </div>
+
+      <form id="form-print" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" target='_blank'>
+        <input type="hidden" name="print">
+        <input type="hidden" name="test_id" value="<?= $test_id;?>">
+      </form>
       <!-- footer -->
       <?php
         include "footer.php";
@@ -141,5 +182,24 @@
   function redirect_to_new_test() {
     window.location = "new_test.php";
   }
+
+      function completed() {
+      document.getElementById("form-print").submit();
+    }
+
+//   function print(testid) {
+//   	console.log('hi');
+//   $.ajax({
+//       type: 'POST',
+//       url: 'print.php',
+//       data: {
+//         'test_id': testid,
+//       },
+//       success: function (response) {
+//       	console.log('donw');
+//       }
+//   });
+// }
+
 </script>
 </html>
