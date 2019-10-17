@@ -29,6 +29,7 @@
 - Option to add the Quiz questions from the Excel file (.xls, .xslx, .ods)
 - Admin can view the statistics of the tests such as score of the students and quiz questions tests
 - Generate run-time random passwords for users to give test
+- Generate pdf option so that admin can directly print the student login credentials for the test
 
 ### ScreenShots
 #### User Side
