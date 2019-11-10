@@ -1,5 +1,11 @@
 <p align="center"><img src="https://github.com/iamrohitsuthar/Quizller/blob/master/images/icons/logo.png"/></p>
 
+<p align="center">
+<a href="https://github.com/iamrohitsuthar/Quizller/stargazers"><img src="https://img.shields.io/github/stars/iamrohitsuthar/Quizller"></a>
+<a href="https://github.com/iamrohitsuthar/Quizller/network/members"><img src="https://img.shields.io/github/forks/iamrohitsuthar/Quizller"></a>
+<a href="https://github.com/iamrohitsuthar/Quizller/blob/master/LICENSE"><img src="https://img.shields.io/github/license/iamrohitsuthar/Quizller"></a>
+</p>
+
 # Quizller - Quiz System
 <table>
   <tr>
