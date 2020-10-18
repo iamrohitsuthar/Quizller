@@ -82,7 +82,7 @@ if(isset($_POST['new_test'])) {
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
-  <link type="text/css" rel="stylesheet" href="http://jqueryte.com/css/jquery-te.css" charset="utf-8">
+  <!-- <link type="text/css" rel="stylesheet" href="http://jqueryte.com/css/jquery-te.css" charset="utf-8"> -->
   <link href="../assets/css/main.css" rel="stylesheet" />
 </head>
 
@@ -215,6 +215,6 @@ if(isset($_POST['new_test'])) {
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
-  <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script>
+  <!-- <script src="http://jqueryte.com/js/jquery-te-1.4.0.min.js"></script> -->
 </body>
 </html>
