@@ -134,7 +134,7 @@
   <td>
     <p><b>Spreadsheet Quiz Questions format</b></p>
     <p>This should be in the format: Question, Option A, Option B, Option C, Option D, Correct Option, Score.</p>
-    <img src="https://imgur.com/a/eXeTbCu"/>
+    <img src="https://i.imgur.com/GBkgUYwl.png"/>
   </td>
 </tr>
 </table>
