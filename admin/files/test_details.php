@@ -400,10 +400,12 @@ if(!isset($_SESSION["user_id"]))
           <input type="hidden" name="type" id="type"> 
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Select excel file to import</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Select spreadsheet to import</h5>
             </div>
             <div class="modal-body">
-            <input type="file" name="file" id="file" accept=".xls,.xlsx,.ods">
+              <p><b>The spreadsheet column should contain (without header):</b> <br> Question, Option A, Option B, Option C, Option D, Correct Option, Score.</p>
+              <p><b>Accepted file formats are:</b> .xls, .xlsx and .ods</p>
+              <input type="file" name="file" id="file" accept=".xls,.xlsx,.ods">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
