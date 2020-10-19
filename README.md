@@ -32,7 +32,7 @@
 - Quiz Website with awesome UI
 - Admin (teacher) can add class and students from admin panel
 - Admin can create new quiz tests and add quiz questions in the test
-- Option to add the Quiz questions from the Excel file (.xls, .xslx, .ods)
+- Option to add the Quiz questions from a spreadsheet (.xls, .xslx, .ods)
 - Admin can view the statistics of the tests such as score of the students and quiz questions tests
 - Generate run-time random passwords for users to give test
 - Generate pdf option so that admin can directly print the student login credentials for the test
@@ -102,7 +102,7 @@
   </td>
   <td>
     <p><b>Add Question</b></p>
-    <p>Admin can add the question into quiz from the excel file</p>
+    <p>Admin can add the question into quiz from a spreadsheet</p>
     <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_excel.png"/>
   </td>
 </tr>
@@ -129,6 +129,13 @@
   <p>Admin can print the student rollno and random password list</p>
   <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_test_cred.png"/>
 </td>
+</tr>
+<tr>
+  <td>
+    <p><b>Spreadsheet Quiz Questions format</b></p>
+    <p>This should be in the format: Question, Option A, Option B, Option C, Option D, Correct Option, Score.</p>
+    <img src="https://imgur.com/a/eXeTbCu"/>
+  </td>
 </tr>
 </table>
 
