@@ -106,7 +106,14 @@
 				</div>
 			</div>
 		</section>
+		<script src=
+        "particles.js-master/particles.js">
+    </script>
+    <script src=
+        "/particles.js-master/demo/js/app.js">
+    </script>
 		<script>
+
 			$(document).ready(function () {
 
 				if (Cookies.get('last_question_was_answered') != undefined) {
@@ -152,5 +159,6 @@
 				}
 			}
 		</script>
+		
 	</body>
 </html>
