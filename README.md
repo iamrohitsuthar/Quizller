@@ -44,12 +44,12 @@
     <td>
       <p><b>Login Page</b></p>
       <p>The Login Page of the website for student</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/student_login.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/student_login.png"/>
     </td>
     <td>
       <p><b>Dashboard Page</b></p>
       <p>List of tests for student</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/student_dashboard.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/student_dashboard.png"/>
     </td>
   </tr>
   
@@ -57,12 +57,12 @@
     <td>
       <p><b>Quiz</b></p>
       <p>Here student have to select the one option from the four options of the Quiz question</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/student_quiz.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/student_quiz_test.png"/>
     </td>
     <td>
       <p><b>Quiz Done</b></p>
       <p>Logout message page displayed when the user finished with the quiz test</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/student_test_finish.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/student_test_completed.png"/>
     </td>
   </tr>
 </table>
@@ -73,12 +73,12 @@
     <td>
       <p><b>Login Page</b></p>
       <p>The Login Page of the website for Admin (Teachers) </p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_login.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/admin_login.png"/>
     </td>
     <td>
       <p><b>Dashboard Page</b></p>
       <p>List of pending tests created by the admin</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_dashbaord.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/admin_dashboard.png"/>
     </td>
   </tr>
   
@@ -86,48 +86,48 @@
     <td>
       <p><b>Create New Test</b></p>
       <p>Admin can create new quiz test</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_new_test.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/create_new_test.png"/>
     </td>
     <td>
       <p><b>Test Details</b></p>
       <p>Here admin can change the test details</p>
-      <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_test_details.png"/>
+      <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/test_details.png"/>
     </td>
   </tr>
   <tr>
   <td>
     <p><b>Add Question</b></p>
     <p>Admin can add new question to the test</p>
-    <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_add_question.png"/>
+    <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/add_question.png"/>
   </td>
   <td>
     <p><b>Add Question</b></p>
     <p>Admin can add the question into quiz from a spreadsheet</p>
-    <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_excel.png"/>
+    <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/import_questions.png"/>
   </td>
 </tr>
 <tr>
 <td>
   <p><b>Add Class / Add Students</b></p>
   <p>Admin can add new class and new students to the existing class</p>
-  <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_class_student.png"/>
+  <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/add_class.png"/>
 </td>
 <td>
   <p><b>View Class Data</b></p>
   <p>Admin can see the list of students present in the class</p>
-  <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_view_data.png"/>
+  <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/class_data.png"/>
 </td>
 </tr>
 <tr>
 <td>
   <p><b>Test Questions</b></p>
   <p>Admin can add see the quiz test questions</p>
-  <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_questions.png"/>
+  <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/test_questions.png"/>
 </td>
 <td>
   <p><b>Students test data</b></p>
   <p>Admin can print the student roll number and random password list</p>
-  <img src="http://iamrohitsuthar.000webhostapp.com/android/github/quizller/admin_test_cred.png"/>
+  <img src="https://github.com/iamrohitsuthar/Quizller/blob/master/readme_images/student_test_creds.png"/>
 </td>
 </tr>
 </table>
