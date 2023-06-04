@@ -17,7 +17,6 @@
 		<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 		<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/tilt/tilt.jquery.min.js"></script>
@@ -47,16 +46,6 @@
 				<a href="index.php" class="logo-mobile">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
-
-				<!-- Button show menu -->
-				<div class="btn-show-menu">
-					<!-- Header Icon mobile -->
-					<div class="header-icons-mobile">
-						<a href="#" class="header-wrapicon1 dis-block">
-							<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-						</a>
-					</div>
-				</div>
 			</div>
 			</div>
 		</header>

@@ -9,6 +9,7 @@
 ?>
 <html>
     <head>
+        <link rel="icon" type="image/png" href="../admin/assets/img/favicon.png">
         <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/header.css">
         <link rel="stylesheet" type="text/css" href="../css/util.css">
