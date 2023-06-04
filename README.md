@@ -134,9 +134,9 @@
 
 ### Steps
 1. Copy the whole project into your WAMP/LAMP/XAMPP folder.
-2. Now create the database and import the script.sql file present in the database folder.
-    1. If you want some sample data run the import the sampleData.sql file instead.
-    2. Sample admin username:password for sampleData is admin:nimda
+2. Now create the database and import the `script.sql` file present in the database folder.
+    1. If you want sample test data then import the `sampleData.sql` file instead.
+    2. Default username:password is `admin:nimda`
 3. Modify the database credentials config.php file present in the database folder.
 4. Now run the project to enjoy the Awesome Quiz System.
 
