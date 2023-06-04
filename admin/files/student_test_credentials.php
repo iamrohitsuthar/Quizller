@@ -187,19 +187,5 @@
       document.getElementById("form-print").submit();
     }
 
-//   function print(testid) {
-//   	console.log('hi');
-//   $.ajax({
-//       type: 'POST',
-//       url: 'print.php',
-//       data: {
-//         'test_id': testid,
-//       },
-//       success: function (response) {
-//       	console.log('donw');
-//       }
-//   });
-// }
-
 </script>
 </html>

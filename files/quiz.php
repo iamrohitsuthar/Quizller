@@ -9,6 +9,7 @@
 ?>
 <html>
     <head>
+        <link rel="icon" type="image/png" href="../admin/assets/img/favicon.png">
         <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/header.css">
         <link rel="stylesheet" type="text/css" href="../css/util.css">
@@ -155,33 +156,7 @@
             	temp1.style.display = 'block';
 
                 Cookies.set('last_question_was_answered', 'true')
-                
-                /*if(val == question_data.correctAns){        //Correct Answer
-                    $.ajax({
-                        type: 'POST',
-                        url: 'increment_score_and_correct_count.php',
-                        data: { 
-                            'score': question_data.score.toString(),
-                            'question_id' : question_data.id.toString() 
-                        },
-                        success: function(msg){
-                            //alert(msg);
-                            createQuestion();
-                        }
-                    });
-                }else{                  //Wrong Answer
-                    $.ajax({
-                        type: 'POST',
-                        url: 'increment_wrong_count.php',
-                        data: { 
-                            'question_id' : question_data.id.toString() 
-                        },
-                        success: function(msg){
-                            //alert(msg);
-                            createQuestion();
-                        }
-                    });
-                }*/
+            
 
                 $.ajax({
                 type : 'POST',

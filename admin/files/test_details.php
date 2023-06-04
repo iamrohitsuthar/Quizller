@@ -27,13 +27,7 @@ if(!isset($_SESSION["user_id"]))
       $status_row = mysqli_fetch_assoc($status);
       $status_id = $status_row["id"];
     }
-    //getting class id
-    // $class_sql = "SELECT id from classes where name LIKE '%$test_class%'";
-    // $class_result = mysqli_query($conn,$class_sql);
-    // if(mysqli_num_rows($class_result) > 0) {
-    //   $class_row = mysqli_fetch_assoc($class_result);
-    //   $class_id = $class_row["id"];
-    // }
+
     $sql = "UPDATE tests SET name = '$test_name', date = '$test_date', status_id = '$status_id', subject = '$test_subject', total_questions = '$total_questions' WHERE id = '$test_id'";
     $result = mysqli_query($conn,$sql);
     if($result) {

@@ -8,7 +8,7 @@
 ?>
 
     <p>You should be redirected in a few seconds.</p>
-    <p>If you're not, please check the file format. You can click <a href="http://localhost/Others/Quizller/admin/files/dashboard.php">here</a> to go back.</p>
+    <p>If you're not, please check the file format. You can click <a href="dashboard.php">here</a> to go back.</p>
 
     <form id="form-completed" method="POST" action="test_details.php">
         <input type="hidden" name="test_id" value="<?= $test_id;?>">
