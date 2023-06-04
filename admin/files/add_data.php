@@ -109,9 +109,10 @@ if(!isset($_SESSION["user_id"]))
                         <select id="options" name="class_option" class="btn-round" required style="width:100%;">
                             <option selected="true" value="" disabled="disabled">Select class for test</option>      
                         </select>
+                        <span id = "extra_roll_class_error" class="error text-danger"></span>
 
                         <div class="form-group" style="margin-top:10px;">
-                            <label>Student Roll number / user id</label>
+                            <label>Student Roll number</label>
                             <input type="text" class="form-control" id="extra_roll_number" name="site_name" placeholder="Student Roll number"/>
                             <span id = "extra_roll_error" class="error text-danger"></span>
                         </div>
@@ -206,29 +207,35 @@ if(!isset($_SESSION["user_id"]))
       }
 }
 
-    function addStudent(){
-      var someValidationFailed = true;
+    function addStudent() {
+      var someValidationFailed = false;
+
+      if(!$('#options').val()) {
+        $('#extra_roll_class_error').html("Please select class");
+        someValidationFailed = true;
+      }
 
       if(!$('#extra_roll_number').val()){
         $('#extra_roll_error').html("Please enter the Roll number");
-          someValidationFailed = true;
+        someValidationFailed = true;
       }
 
-      if($('#extra_roll_number').val() && !$.isNumeric($('#starting_roll_number').val())){
+      if($('#extra_roll_number').val() && !$.isNumeric($('#extra_roll_number').val())){
         $('#extra_roll_error').html("Please enter a valid Roll number");
-          someValidationFailed = true;
+        someValidationFailed = true;
       }
-
+    
     if(!someValidationFailed){
       $.ajax({
         type: 'POST',
         url: 'add_extra_student.php',
         data: {
-          'class_name': $('#options option:selected').val(),
+          'class_name': $('#options').val(),
           'extra_roll_number': $('#extra_roll_number').val(),
         },
         success: function (response) {
           alert(response);
+          location.reload();
         }
       }); 
     } 
