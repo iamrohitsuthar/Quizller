@@ -294,7 +294,7 @@ if(!isset($_SESSION["user_id"]))
                   <input type="hidden" name="other_settings">
                   <input type="hidden" name="test_id" value="<?= $test_id;?>">
                   <div class="form-group" style="margin-top:10px;">
-                    <label>Student Roll number / user id</label>
+                    <label>Add guest student to test</label>
                     <input type="text" class="form-control" name="student_roll_no" placeholder="Student Roll number"/>
                   </div>
 
