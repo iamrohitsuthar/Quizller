@@ -18,9 +18,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	else
 	{
 		echo "fail";
-		// $file=fopen("logs.txt","a") or die("Something went wrong");
-        // fwrite($file,"[$date] - " . mysqli_error($conn)."\r\n");
-        // fclose($file);
 	}
 }
 ?>
