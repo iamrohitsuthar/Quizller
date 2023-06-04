@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 12, 2019 at 09:47 AM
--- Server version: 8.0.17
--- PHP Version: 7.2.22
+-- Host: localhost
+-- Generation Time: Jun 04, 2023 at 11:31 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,22 +30,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `classes`
 --
 
 INSERT INTO `classes` (`id`, `name`) VALUES
-(1, 'TE3');
+(1, 'Web class');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Table structure for table `Questions`
 --
 
-CREATE TABLE `questions` (
+CREATE TABLE `Questions` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `optionA` varchar(255) NOT NULL,
@@ -55,23 +54,17 @@ CREATE TABLE `questions` (
   `optionD` varchar(255) NOT NULL,
   `correctAns` varchar(255) NOT NULL,
   `score` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `questions`
+-- Dumping data for table `Questions`
 --
 
-INSERT INTO `questions` (`id`, `title`, `optionA`, `optionB`, `optionC`, `optionD`, `correctAns`, `score`) VALUES
-(1, 'What is DBMS?', 'D', 'B', 'M', 'S', 'a', 2),
-(3, 'QUESTION TEMP 1', 'a', 'b', 'c', 'd', 'a', 2),
-(4, 'QUESTION TEMP 2', 'a', 'b', 'c', 'd', 'a', 10),
-(5, 'QUESTION TEMP 3', 'a', 'b', 'c', 'd', 'c', 10),
-(6, 'QUESTION TEMP 4', 'a', 'b', 'c', 'd', 'd', 20),
-(7, 'QUESTION TEMP 5', 'a', 'b', 'c', 'd', 'a', 2),
-(8, 'QUESTION TEMP 6', 'a', 'b', 'c', 'd', 'a', 20),
-(9, 'QUESTION TEMP 1', 'a', 'b', 'c', 'd', 'a', 20),
-(10, 'WHAT IS DBMS 1', 'a', 'b', 'c', 'd', 'a', 20),
-(11, 'WHAT IS DBMS 1', 'a', 'b', 'c', 'd', 'a', 20);
+INSERT INTO `Questions` (`id`, `title`, `optionA`, `optionB`, `optionC`, `optionD`, `correctAns`, `score`) VALUES
+(1, 'Which of the following attributes is used to add link to any element?', 'link', 'ref', 'href', 'newref', 'c', 10),
+(2, 'Which of the following attributes is used to open an hyperlink in new tab?', 'tab', 'href', 'target', 'ref', 'c', 20),
+(3, 'Which of the following attributes is used to add link to any element?', 'link', 'ref', 'href', 'newref', 'c', 10),
+(4, 'Which of the following attributes is used to open an hyperlink in new tab?', 'tab', 'href', 'target', 'ref', 'c', 10);
 
 -- --------------------------------------------------------
 
@@ -82,22 +75,17 @@ INSERT INTO `questions` (`id`, `title`, `optionA`, `optionB`, `optionC`, `option
 CREATE TABLE `question_test_mapping` (
   `question_id` int(11) NOT NULL,
   `test_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `question_test_mapping`
 --
 
 INSERT INTO `question_test_mapping` (`question_id`, `test_id`) VALUES
-(3, 4),
-(4, 4),
-(5, 4),
-(6, 4),
-(7, 4),
-(8, 4),
-(10, 5),
-(11, 5),
-(9, 7);
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 2);
 
 -- --------------------------------------------------------
 
@@ -111,7 +99,17 @@ CREATE TABLE `score` (
   `question_id` int(11) NOT NULL,
   `correct_count` int(11) NOT NULL,
   `wrong_count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `score`
+--
+
+INSERT INTO `score` (`id`, `test_id`, `question_id`, `correct_count`, `wrong_count`) VALUES
+(1, 1, 1, 2, 0),
+(2, 1, 2, 1, 1),
+(3, 2, 3, 0, 0),
+(4, 2, 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +120,7 @@ CREATE TABLE `score` (
 CREATE TABLE `status` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `status`
@@ -146,20 +144,35 @@ CREATE TABLE `students` (
   `password` varchar(255) NOT NULL,
   `score` int(255) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
 INSERT INTO `students` (`id`, `test_id`, `rollno`, `password`, `score`, `status`) VALUES
-(8, 4, 7, 'rKU2Hf84', 50, 0),
-(9, 4, 8, 'sTXu1qp4', 100, 0),
-(10, 6, 5, 'sKHhQFW6', 0, 0),
-(11, 6, 9, '5d18z1I6', 0, 0),
-(12, 7, 5, 'wXZbrVN7', 0, 0),
-(13, 7, 9, 'Y6ZzjaV7', 0, 0),
-(14, 7, 10, 'KYtuUYa7', 0, 0);
+(1, 1, 1, 'fvOIe421', 30, 1),
+(2, 1, 2, 'jVOTAgB1', 10, 1),
+(3, 1, 3, 'yKMVVcb1', 0, 0),
+(4, 1, 4, '8MbEtVX1', 0, 0),
+(5, 1, 5, 'd0lABPl1', 0, 0),
+(6, 1, 6, 'eIgGrTG1', 0, 0),
+(7, 1, 7, 'FNXCrVe1', 0, 0),
+(8, 1, 8, 'LRtQ5uM1', 0, 0),
+(9, 1, 9, 'yWtQtGv1', 0, 0),
+(10, 1, 10, 't90pLUp1', 0, 0),
+(11, 1, 11, 'rgnrgXU1', 0, 0),
+(12, 2, 1, 'c5mfcXP2', 0, 0),
+(13, 2, 2, 'EbbXzZg2', 0, 0),
+(14, 2, 3, 'YYQ6ubk2', 0, 0),
+(15, 2, 4, '6CJyQQa2', 0, 0),
+(16, 2, 5, 'JN9ZQ2V2', 0, 0),
+(17, 2, 6, 'uGr9d0r2', 0, 0),
+(18, 2, 7, 'mhylzzP2', 0, 0),
+(19, 2, 8, 'ZCFQJy42', 0, 0),
+(20, 2, 9, 'wAGyMF72', 0, 0),
+(21, 2, 10, 'Ji1oFuD2', 0, 0),
+(22, 2, 11, 'XoryU2r2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -169,20 +182,26 @@ INSERT INTO `students` (`id`, `test_id`, `rollno`, `password`, `score`, `status`
 
 CREATE TABLE `student_data` (
   `id` int(11) NOT NULL,
-  `rollno` int(11) NOT NULL,
+  `rollno` bigint(20) NOT NULL,
   `class_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student_data`
 --
 
 INSERT INTO `student_data` (`id`, `rollno`, `class_id`) VALUES
-(5, 313001, 1),
-(7, 31381, NULL),
-(8, 31382, NULL),
-(9, 313002, 1),
-(10, 31390, NULL);
+(1, 1000, 1),
+(2, 1001, 1),
+(3, 1002, 1),
+(4, 1003, 1),
+(5, 1004, 1),
+(6, 1005, 1),
+(7, 1006, 1),
+(8, 1007, 1),
+(9, 1008, 1),
+(10, 1009, 1),
+(11, 1010, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +213,7 @@ CREATE TABLE `teachers` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `teachers`
@@ -218,17 +237,15 @@ CREATE TABLE `tests` (
   `subject` varchar(255) NOT NULL,
   `total_questions` int(11) NOT NULL,
   `class_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tests`
 --
 
 INSERT INTO `tests` (`id`, `teacher_id`, `name`, `date`, `status_id`, `subject`, `total_questions`, `class_id`) VALUES
-(4, 1, 'DBMS MOCK TEST 4', '2019-10-23', 3, 'DBMS', 12, 1),
-(5, 1, 'DBMS MOCK TEST 5', '2019-10-29', 1, 'DBMS', 9, 1),
-(6, 1, 'TOC MOCK TEST', '2019-10-30', 1, 'TOC', 12, 1),
-(7, 1, 'DBMS MOCK TEST UPDATE', '2019-10-15', 1, 'DBMS', 12, 1);
+(1, 1, 'Developer Quiz', '2023-05-30', 3, 'General', 2, 1),
+(2, 1, 'Developer Quiz Test 1', '2023-05-30', 2, 'General', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -241,9 +258,9 @@ ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `questions`
+-- Indexes for table `Questions`
 --
-ALTER TABLE `questions`
+ALTER TABLE `Questions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -308,16 +325,16 @@ ALTER TABLE `classes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT for table `Questions`
 --
-ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `Questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `score`
 --
 ALTER TABLE `score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -329,13 +346,13 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `student_data`
 --
 ALTER TABLE `student_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teachers`
@@ -347,7 +364,7 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -357,7 +374,7 @@ ALTER TABLE `tests`
 -- Constraints for table `question_test_mapping`
 --
 ALTER TABLE `question_test_mapping`
-  ADD CONSTRAINT `question_test_mapping_fk0` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
+  ADD CONSTRAINT `question_test_mapping_fk0` FOREIGN KEY (`question_id`) REFERENCES `Questions` (`id`),
   ADD CONSTRAINT `question_test_mapping_fk1` FOREIGN KEY (`test_id`) REFERENCES `tests` (`id`);
 
 --
@@ -365,7 +382,7 @@ ALTER TABLE `question_test_mapping`
 --
 ALTER TABLE `score`
   ADD CONSTRAINT `score_fk0` FOREIGN KEY (`test_id`) REFERENCES `tests` (`id`),
-  ADD CONSTRAINT `score_fk1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
+  ADD CONSTRAINT `score_fk1` FOREIGN KEY (`question_id`) REFERENCES `Questions` (`id`);
 
 --
 -- Constraints for table `students`
