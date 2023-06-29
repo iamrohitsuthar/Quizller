@@ -69,7 +69,7 @@
 							<span class="symbol-input100">
 								<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 							</span>
-							<span class="error text-danger" id="empty_roll_number_field"></span>
+							<p class="error text-danger" id="empty_roll_number_field"></p>
 						</div>
 
 						<div class="wrap-input100 validate-input">
@@ -79,7 +79,7 @@
 							<span class="symbol-input100">
 								<i class="fa fa-lock" aria-hidden="true"></i>
 							</span>
-							<span class="error text-danger" id="empty_roll_password_field"></span>
+							<p class="error text-danger" id="empty_roll_password_field"></p>
 						</div>
 
 						<div class="container-login100-form-btn">
@@ -116,11 +116,11 @@
 
 				if (!$('#studentRollNumber').val()) {
 					someFieldIsEmpty = true;
-					$('#empty_roll_number_field').val("Please enter your roll number");
+					$('#empty_roll_number_field').text("Please enter your roll number");
 				}
 				if (!$('#studentPassword').val()) {
 					someFieldIsEmpty = true;
-					$('#empty_roll_passsword_field').val("Please enter your password");
+					$('#empty_roll_password_field').text("Please enter your password");
 				}
 
 				if (!someFieldIsEmpty) {
