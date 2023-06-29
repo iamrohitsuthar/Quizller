@@ -79,7 +79,7 @@
 							<span class="symbol-input100">
 								<i class="fa fa-lock" aria-hidden="true"></i>
 							</span>
-							<span class="error text-danger" id="empty_roll_password_field"></spans>
+							<span class="error text-danger" id="empty_roll_password_field"></span>
 						</div>
 
 						<div class="container-login100-form-btn">
