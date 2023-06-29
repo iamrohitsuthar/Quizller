@@ -116,11 +116,11 @@
 
 				if (!$('#studentRollNumber').val()) {
 					someFieldIsEmpty = true;
-					$('#empty_roll_number_field').val("Please enter your roll number");
+					$('#empty_roll_number_field').text("Please enter your roll number");
 				}
 				if (!$('#studentPassword').val()) {
 					someFieldIsEmpty = true;
-					$('#empty_roll_passsword_field').val("Please enter your password");
+					$('#empty_roll_password_field').text("Please enter your password");
 				}
 
 				if (!someFieldIsEmpty) {
