@@ -16,7 +16,7 @@ if(!isset($_SESSION["user_id"]))
     $test_date = $_POST['test_date'];
     $total_questions = $_POST['total_questions'];
     $test_status = $_POST['test_status'];
-    $test_class = $_POST['test_class'];
+//    $test_class = $_POST['test_class'];
     $status_id = $class_id = -1;
     $general_settings = false;
 
@@ -45,10 +45,12 @@ if(!isset($_SESSION["user_id"]))
     return $randomString;
   }
 
+  $other_settings = false;
+  $complete = false;
+  $delete = false;
   if(isset($_POST['other_settings'])) {
     $test_id = $_POST['test_id'];
     $student_roll_no = $_POST['student_roll_no'];
-    $other_settings = false;
 
     $temp = 8 - strlen($test_id);
     $random = generateRandomString($temp);
@@ -73,7 +75,6 @@ if(!isset($_SESSION["user_id"]))
   if(isset($_POST['completed'])) {
     $test_id = $_POST['test_id'];
     $complete_id = -1;
-    $complete = false;
     $sql1= "select id from status where name LIKE 'completed'";
     $result1 = mysqli_query($conn,$sql1);
     $row1 = mysqli_fetch_assoc($result1);
@@ -87,7 +88,6 @@ if(!isset($_SESSION["user_id"]))
 
   if(isset($_POST['deleted'])) {
     $test_id = $_POST['test_id'];
-    $delete = false;
     $sql1= "DELETE from question_test_mapping WHERE test_id = $test_id";
     $result1 = mysqli_query($conn,$sql1);
 
