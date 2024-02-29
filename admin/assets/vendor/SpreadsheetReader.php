@@ -230,6 +230,7 @@
 		 * Rewind the Iterator to the first element.
 		 * Similar to the reset() function for arrays in PHP
 		 */ 
+		#[\ReturnTypeWillChange] 
 		public function rewind()
 		{
 			$this -> Index = 0;
@@ -245,7 +246,7 @@
 		 *
 		 * @return mixed current element from the collection
 		 */
-		public function current()
+		public function current(): mixed
 		{
 			if ($this -> Handle)
 			{
@@ -258,6 +259,7 @@
 		 * Move forward to next element. 
 		 * Similar to the next() function for arrays in PHP 
 		 */ 
+		#[\ReturnTypeWillChange] 
 		public function next()
 		{
 			if ($this -> Handle)
@@ -266,7 +268,7 @@
 
 				return $this -> Handle -> next();
 			}
-			return null;
+			return;
 		}
 
 		/** 
@@ -275,6 +277,7 @@
 		 *
 		 * @return mixed either an integer or a string
 		 */ 
+		#[\ReturnTypeWillChange] 
 		public function key()
 		{
 			if ($this -> Handle)
@@ -290,7 +293,7 @@
 		 *
 		 * @return boolean FALSE if there's nothing more to iterate over
 		 */ 
-		public function valid()
+		public function valid(): bool
 		{
 			if ($this -> Handle)
 			{
@@ -300,7 +303,7 @@
 		}
 
 		// !Countable interface method
-		public function count()
+		public function count(): int
 		{
 			if ($this -> Handle)
 			{
@@ -315,7 +318,7 @@
 		 *
 		 * @param int Position in file
 		 */
-		public function seek($Position)
+		public function seek(int $Position): void
 		{
 			if (!$this -> Handle)
 			{
@@ -342,7 +345,6 @@
 				}
 			}
 
-			return null;
+			return;
 		}
 	}
-?>

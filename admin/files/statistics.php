@@ -74,7 +74,8 @@ if(!isset($_SESSION["user_id"]))
                   <?php
                     include '../../database/config.php';
                     $user_id = $_SESSION["user_id"];
-                    $sql = "select * from tests where teacher_id = $user_id and status_id = 3";
+                    $sql = "select tests.* , status.name as status from tests JOIN status ON tests.status_id = status.id where teacher_id = $user_id and status_id IN (2, 3)";
+
                     $result = mysqli_query($conn,$sql);
                     if(mysqli_num_rows($result) > 0) {
                       while($row = mysqli_fetch_assoc($result)) {
@@ -86,7 +87,10 @@ if(!isset($_SESSION["user_id"]))
                                   <div class="col-md-8">
                                     <p>Subject - <?= $row["subject"];?></p>
                                   </div>
-                                  <div class="col-md-4"> 
+                                  <div class="col-md-2">
+                                    <p style="text-align:right;">Status - <?= $row["status"];?></p>
+                                  </div>
+                                  <div class="col-md-2">
                                     <p style="text-align:right;">Date - <?= $row["date"];?></p>
                                   </div>
                                 </div>

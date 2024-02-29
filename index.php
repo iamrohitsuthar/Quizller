@@ -47,7 +47,6 @@
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 			</div>
-			</div>
 		</header>
 
 		<section>
